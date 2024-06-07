@@ -35,8 +35,8 @@ import routes from "routes";
 import { useMaterialUIController, setMiniSidenav, setOpenConfigurator } from "context";
 
 // Images
-import brandWhite from "assets/images/logo-ct.png";
-import brandDark from "assets/images/logo-ct-dark.png";
+import brandWhite from "./assets/images/logo-mundo-colorido-transparente.png";
+import brandDark from "assets/images/logo-mundo-dark.png";
 
 import { setupAxiosInterceptors } from "./services/interceptor";
 import ProtectedRoute from "examples/ProtectedRoute";
@@ -132,7 +132,7 @@ export default function App() {
             exact
             path={route.route}
             element={
-              <ProtectedRoute isAuthenticated={authContext.isAuthenticated}>
+              <ProtectedRoute isAuthenticated={true}>
                 {route.component}
               </ProtectedRoute>
             }
@@ -236,7 +236,7 @@ export default function App() {
                 <Sidenav
                   color={sidenavColor}
                   brand={(transparentSidenav && !darkMode) || whiteSidenav ? brandDark : brandWhite}
-                  brandName="Material Dashboard 2"
+                  brandName="Material Dashboard 2 01"
                   routes={routes}
                   onMouseEnter={handleOnMouseEnter}
                   onMouseLeave={handleOnMouseLeave}
@@ -263,7 +263,7 @@ export default function App() {
               <Sidenav
                 color={sidenavColor}
                 brand={(transparentSidenav && !darkMode) || whiteSidenav ? brandDark : brandWhite}
-                brandName="Material Dashboard 2"
+                brandName="Mundo da Dança"
                 routes={routes}
                 onMouseEnter={handleOnMouseEnter}
                 onMouseLeave={handleOnMouseLeave}
@@ -282,7 +282,7 @@ export default function App() {
               exact
               path="user-profile"
               element={
-                <ProtectedRoute isAuthenticated={authContext.isAuthenticated}>
+                <ProtectedRoute isAuthenticated={true}>
                   <UserProfile />
                 </ProtectedRoute>
               }
@@ -292,7 +292,7 @@ export default function App() {
               exact
               path="user-management"
               element={
-                <ProtectedRoute isAuthenticated={authContext.isAuthenticated}>
+                <ProtectedRoute isAuthenticated={true}>
                   <UserManagement />
                 </ProtectedRoute>
               }

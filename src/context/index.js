@@ -29,7 +29,7 @@ const MaterialUI = createContext();
 
 // authentication context
 export const AuthContext = createContext({
-  isAuthenticated: false,
+  isAuthenticated: true,
   login: () => {},
   register: () => {},
   logout: () => {},
