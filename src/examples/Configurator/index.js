@@ -138,9 +138,9 @@ function Configurator() {
         px={3}
       >
         <MDBox>
-          <MDTypography variant="h5">Material UI Configurator</MDTypography>
+          <MDTypography variant="h5">Configurar Sistema</MDTypography>
           <MDTypography variant="body2" color="text">
-            See our dashboard options.
+            Configure as cores do seu sistema.
           </MDTypography>
         </MDBox>
 
@@ -163,7 +163,7 @@ function Configurator() {
 
       <MDBox pt={0.5} pb={3} px={3}>
         <MDBox>
-          <MDTypography variant="h6">Sidenav Colors</MDTypography>
+          <MDTypography variant="h6">Cor do menú</MDTypography>
 
           <MDBox mb={0.5}>
             {sidenavColors.map((color) => (
@@ -209,9 +209,9 @@ function Configurator() {
         </MDBox>
 
         <MDBox mt={3} lineHeight={1}>
-          <MDTypography variant="h6">Sidenav Type</MDTypography>
+          <MDTypography variant="h6">Tipo de navegação</MDTypography>
           <MDTypography variant="button" color="text">
-            Choose between different sidenav types.
+            Escolha entre diferentes tipos de navegação.
           </MDTypography>
 
           <MDBox
@@ -233,7 +233,7 @@ function Configurator() {
                   : sidenavTypeButtonsStyles
               }
             >
-              Dark
+              Escuro
             </MDButton>
             <MDBox sx={{ mx: 1, width: "8rem", minWidth: "8rem" }}>
               <MDButton
@@ -248,7 +248,7 @@ function Configurator() {
                     : sidenavTypeButtonsStyles
                 }
               >
-                Transparent
+                Transparente
               </MDButton>
             </MDBox>
             <MDButton
@@ -263,7 +263,7 @@ function Configurator() {
                   : sidenavTypeButtonsStyles
               }
             >
-              White
+              Branco
             </MDButton>
           </MDBox>
         </MDBox>
@@ -274,69 +274,70 @@ function Configurator() {
           mt={3}
           lineHeight={1}
         >
-          <MDTypography variant="h6">Navbar Fixed</MDTypography>
+          <MDTypography variant="h6">Barra de navegação corrigida
+          </MDTypography>
 
           <Switch checked={fixedNavbar} onChange={handleFixedNavbar} />
         </MDBox>
         <Divider />
         <MDBox display="flex" justifyContent="space-between" alignItems="center" lineHeight={1}>
-          <MDTypography variant="h6">Light / Dark</MDTypography>
+          <MDTypography variant="h6">Claro / Escuro</MDTypography>
 
           <Switch checked={darkMode} onChange={handleDarkMode} />
         </MDBox>
         <Divider />
         <MDBox mt={3} mb={2}>
-          <MDButton
-            component={Link}
-            href="https://material-dashboard-react-node-docs.creative-tim.com/react/project-installation/material-dashboard-node/"
-            target="_blank"
-            rel="noreferrer"
-            color={darkMode ? "light" : "dark"}
-            variant="outlined"
-            fullWidth
-          >
-            view documentation
-          </MDButton>
+          {/*<MDButton*/}
+          {/*  component={Link}*/}
+          {/*  href="https://material-dashboard-react-node-docs.creative-tim.com/react/project-installation/material-dashboard-node/"*/}
+          {/*  target="_blank"*/}
+          {/*  rel="noreferrer"*/}
+          {/*  color={darkMode ? "light" : "dark"}*/}
+          {/*  variant="outlined"*/}
+          {/*  fullWidth*/}
+          {/*>*/}
+          {/*  view documentation*/}
+          {/*</MDButton>*/}
         </MDBox>
         <MDBox display="flex" justifyContent="center">
-          <GitHubButton
-            href="https://github.com/creativetimofficial/material-dashboard-react-nodejs"
-            data-icon="octicon-star"
-            data-size="large"
-            data-show-count="true"
-            aria-label="Star creativetimofficial/material-dashboard-react-node on GitHub"
-          >
-            Star
-          </GitHubButton>
+          {/*<GitHubButton*/}
+          {/*  href="https://github.com/creativetimofficial/material-dashboard-react-nodejs"*/}
+          {/*  data-icon="octicon-star"*/}
+          {/*  data-size="large"*/}
+          {/*  data-show-count="true"*/}
+          {/*  aria-label="Star creativetimofficial/material-dashboard-react-node on GitHub"*/}
+          {/*>*/}
+          {/*  Star*/}
+          {/*</GitHubButton>*/}
         </MDBox>
         <MDBox mt={2} textAlign="center">
-          <MDBox mb={0.5}>
-            <MDTypography variant="h6">Thank you for sharing!</MDTypography>
-          </MDBox>
+          {/*<MDBox mb={0.5}>*/}
+          {/*  <MDTypography variant="h6">Thank you for sharing!</MDTypography>*/}
+          {/*</MDBox>*/}
 
           <MDBox display="flex" justifyContent="center">
             <MDBox mr={1.5}>
-              <MDButton
-                component={Link}
-                href="//twitter.com/intent/tweet?text=Check%20Material%20Dashboard%20React%20with%20NodeJS%20API%20made%20by%20%40CreativeTim%20and%20%40UPDIVISION%20%23webdesign%20%23dashboard%20%23react%20%23mui&url=https%3A%2F%2Fwww.creative-tim.com%2Fproduct%2Fmaterial-dashboard-react-node"
-                target="_blank"
-                rel="noreferrer"
-                color="dark"
-              >
-                <TwitterIcon />
-                &nbsp; Tweet
-              </MDButton>
+              {/*<MDButton*/}
+              {/*  component={Link}*/}
+              {/*  href="//twitter.com/intent/tweet?text=Check%20Material%20Dashboard%20React%20with%20NodeJS%20API%20made%20by%20%40CreativeTim%20and%20%40UPDIVISION%20%23webdesign%20%23dashboard%20%23react%20%23mui&url=https%3A%2F%2Fwww.creative-tim.com%2Fproduct%2Fmaterial-dashboard-react-node"*/}
+              {/*  target="_blank"*/}
+              {/*  rel="noreferrer"*/}
+              {/*  color="dark"*/}
+              {/*>*/}
+              {/*  <TwitterIcon />*/}
+              {/*  &nbsp; Tweet*/}
+              {/*</MDButton>*/}
             </MDBox>
-            <MDButton
-              component={Link}
-              href="https://www.facebook.com/sharer/sharer.php?u=https://www.creative-tim.com/product/material-dashboard-react-nodejs"
-              target="_blank"
-              rel="noreferrer"
-              color="dark"
-            >
-              <FacebookIcon />
-              &nbsp; Share
-            </MDButton>
+            {/*<MDButton*/}
+            {/*  component={Link}*/}
+            {/*  href="https://www.facebook.com/sharer/sharer.php?u=https://www.creative-tim.com/product/material-dashboard-react-nodejs"*/}
+            {/*  target="_blank"*/}
+            {/*  rel="noreferrer"*/}
+            {/*  color="dark"*/}
+            {/*>*/}
+            {/*  <FacebookIcon />*/}
+            {/*  &nbsp; Share*/}
+            {/*</MDButton>*/}
           </MDBox>
         </MDBox>
       </MDBox>

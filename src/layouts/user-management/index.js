@@ -23,15 +23,15 @@ const UserManagement = () => {
   return (
     <DashboardLayout>
       <DashboardNavbar />
-      <MDAlert mt={2} color="dark">
-        <MDTypography variant="body2" color="white" fontWeight="medium">
-          This is a PRO feature. Click
-          <a href="https://www.creative-tim.com/product/material-dashboard-pro-react-nodejs" target="_blank" style={{color: '#1A73E8'}}>
-            &nbsp;here&nbsp;
-          </a>
-          to see the PRO version
-        </MDTypography>
-      </MDAlert>
+      {/*<MDAlert mt={2} color="dark">*/}
+      {/*  <MDTypography variant="body2" color="white" fontWeight="medium">*/}
+      {/*    This is a PRO feature. Click*/}
+      {/*    <a href="https://www.creative-tim.com/product/material-dashboard-pro-react-nodejs" target="_blank" style={{color: '#1A73E8'}}>*/}
+      {/*      &nbsp;here&nbsp;*/}
+      {/*    </a>*/}
+      {/*    to see the PRO version*/}
+      {/*  </MDTypography>*/}
+      {/*</MDAlert>*/}
       <MDBox pt={6} pb={3}>
         <Grid container spacing={6}>
           <Grid item xs={12}>
@@ -47,7 +47,7 @@ const UserManagement = () => {
                 coloredShadow="info"
               >
                 <MDTypography variant="h6" color="white">
-                  Users Table
+                  Tabela de usuários
                 </MDTypography>
               </MDBox>
               <MDBox pt={3}>
