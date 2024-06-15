@@ -74,7 +74,7 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
   const renderRoutes = routes.map(({ type, name, icon, title, noCollapse, key, href, route }) => {
     let returnValue;
 
-    if (type === "collapse") {
+    if (type === "teste") {
       returnValue = href ? (
         <Link
           href={href}
@@ -88,6 +88,7 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
             icon={icon}
             active={key === collapseName}
             noCollapse={noCollapse}
+
           />
         </Link>
       ) : (
@@ -145,6 +146,7 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
               icon={icon}
               active={key === collapseName}
               noCollapse={noCollapse}
+
             />
           </Link>
         ) : (

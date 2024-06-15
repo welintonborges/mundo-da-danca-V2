@@ -22,13 +22,20 @@ import {
 
 // Material Dashboard 2 React context
 import { useMaterialUIController } from "context";
+import {Collapse, List} from "@mui/material";
+import {useState} from "react";
+import {ExpandLess, ExpandMore} from "@mui/icons-material";
 
 function SidenavCollapse({ icon, name, active, ...rest }) {
   const [controller] = useMaterialUIController();
   const { miniSidenav, transparentSidenav, whiteSidenav, darkMode, sidenavColor } = controller;
 
+    const [open, setOpen] = useState(false);
+    const handleToggle = () => {
+        setOpen(!open);
+    };
   return (
-    <ListItem component="li">
+    <ListItem button onClick={handleToggle} component="li">
       <MDBox
         {...rest}
         sx={(theme) =>
@@ -41,6 +48,7 @@ function SidenavCollapse({ icon, name, active, ...rest }) {
           })
         }
       >
+          {/*{open? <ExpandLess /> : <ExpandMore />}*/}
         <ListItemIcon
           sx={(theme) =>
             collapseIconBox(theme, { transparentSidenav, whiteSidenav, darkMode, active })
@@ -64,6 +72,24 @@ function SidenavCollapse({ icon, name, active, ...rest }) {
             })
           }
         />
+
+          <Collapse in={open} timeout="auto" unmountOnExit>
+              <List component="div" disablePadding>
+
+                  <ListItemText
+                      primary={name}
+                      sx={(theme) =>
+                          collapseText(theme, {
+                              miniSidenav,
+                              transparentSidenav,
+                              whiteSidenav,
+                              active,
+                          })
+                      }
+                  />
+
+              </List>
+          </Collapse>
       </MDBox>
     </ListItem>
   );

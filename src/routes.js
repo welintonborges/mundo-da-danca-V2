@@ -23,12 +23,13 @@ import Icon from "@mui/material/Icon";
 
 const routes = [
   {
-    type: "collapse",
+    type: "teste",
     name: "Dashboard",
     key: "dashboard",
     icon: <Icon fontSize="small">dashboard</Icon>,
     route: "/dashboard",
     component: <Dashboard />,
+
   },
   {
     type: "collapse",
@@ -93,6 +94,16 @@ const routes = [
     icon: <Icon fontSize="small">list</Icon>,
     route: "/user-management",
     component: <UserManagement />,
+    submenu: [
+      {
+        title: "submenu 1",
+        route: "/submenu1",
+      },
+      {
+        title: "submenu 2",
+        route: "/submenu2",
+      },
+    ],
   },
   {
     type: "collapse",
