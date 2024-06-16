@@ -27,15 +27,16 @@ const routes = [
     name: "Dashboard",
     key: "dashboard",
     icon: <Icon fontSize="small">dashboard</Icon>,
-    // route: "/dashboard",
-   // component: <Dashboard />,
+    route: "/dashboard",
+    //
     children: [
       {
-        key: "dashboard",
+        // UserProfile will be rendered inside User's <router-view>
+        // when /user/:id/profile is matched
         path: 'profile',
         name: 'Dashboard',
-        route: "/dashboard",
-         component: <Dashboard />,
+        component: <Dashboard />,
+        // component: <Dashboard />,
         // component: UserProfile,
       },
       {

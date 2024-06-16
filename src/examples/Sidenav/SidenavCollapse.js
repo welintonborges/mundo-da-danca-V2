@@ -70,18 +70,17 @@ function SidenavCollapse({ icon, name, active, children, ...rest }) {
               miniSidenav,
               transparentSidenav,
               whiteSidenav,
-              active,
+              active
             })
           }
         />
 
           {childrenCarregado.rotas  &&(
           <Collapse in={open} timeout="auto" unmountOnExit>
-              <List component="div" disablePadding   styles={{lineHeight: 2}}>
+              <List component="div" disablePadding   >
                   {childrenCarregado.rotas.map((child, index) => (
                       <ListItemText
                       primary={child.name}
-                      onClick={child.route}
                       sx={(theme) =>
                           collapseText(theme, {
                               miniSidenav,
