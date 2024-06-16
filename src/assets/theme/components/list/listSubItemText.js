@@ -1,5 +1,5 @@
 
-const listItemText = {
+const listSubItemText = {
   styleOverrides: {
     root: {
       marginTop: 0,
@@ -8,4 +8,4 @@ const listItemText = {
   },
 };
 
-export default listItemText;
+export default listSubItemText;

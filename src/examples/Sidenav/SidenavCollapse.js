@@ -25,11 +25,13 @@ import { useMaterialUIController } from "context";
 import {Collapse, List} from "@mui/material";
 import {useState} from "react";
 import {ExpandLess, ExpandMore} from "@mui/icons-material";
+import routes from "../../routes";
 
-function SidenavCollapse({ icon, name, active, ...rest }) {
+function SidenavCollapse({ icon, name, active, children, ...rest }) {
   const [controller] = useMaterialUIController();
   const { miniSidenav, transparentSidenav, whiteSidenav, darkMode, sidenavColor } = controller;
-
+  const  childrenCarregado = {...rest}
+    console.log("teste ==> ", childrenCarregado.rotas)
     const [open, setOpen] = useState(false);
     const handleToggle = () => {
         setOpen(!open);
@@ -73,23 +75,38 @@ function SidenavCollapse({ icon, name, active, ...rest }) {
           }
         />
 
+          {childrenCarregado.rotas  &&(
           <Collapse in={open} timeout="auto" unmountOnExit>
-              <List component="div" disablePadding>
-
-                  <ListItemText
-                      primary={name}
+              <List component="div" disablePadding   styles={{lineHeight: 2}}>
+                  {childrenCarregado.rotas.map((child, index) => (
+                      <ListItemText
+                      primary={child.name}
+                      onClick={child.route}
                       sx={(theme) =>
                           collapseText(theme, {
                               miniSidenav,
                               transparentSidenav,
                               whiteSidenav,
-                              active,
+                              active
                           })
-                      }
-                  />
+                       }
+                      />
 
+                  ))}
+                  {/*<ListItemText*/}
+                  {/*    primary={name}*/}
+                  {/*    sx={(theme) =>*/}
+                  {/*        collapseText(theme, {*/}
+                  {/*            miniSidenav,*/}
+                  {/*            transparentSidenav,*/}
+                  {/*            whiteSidenav,*/}
+                  {/*            active,*/}
+                  {/*        })*/}
+                  {/*    }*/}
+                  {/*/>*/}
               </List>
           </Collapse>
+          )}
       </MDBox>
     </ListItem>
   );
@@ -105,6 +122,7 @@ SidenavCollapse.propTypes = {
   icon: PropTypes.node.isRequired,
   name: PropTypes.string.isRequired,
   active: PropTypes.bool,
+  children: PropTypes.string
 };
 
 export default SidenavCollapse;

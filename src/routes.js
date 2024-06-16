@@ -23,12 +23,36 @@ import Icon from "@mui/material/Icon";
 
 const routes = [
   {
-    type: "teste",
+    type: "collapse",
     name: "Dashboard",
     key: "dashboard",
     icon: <Icon fontSize="small">dashboard</Icon>,
-    route: "/dashboard",
-    component: <Dashboard />,
+    // route: "/dashboard",
+   // component: <Dashboard />,
+    children: [
+      {
+        key: "dashboard",
+        path: 'profile',
+        name: 'Dashboard',
+        route: "/dashboard",
+         component: <Dashboard />,
+        // component: UserProfile,
+      },
+      {
+        // UserPosts will be rendered inside User's <router-view>
+        // when /user/:id/posts is matched
+        path: 'posts',
+        name: 'posts'
+        // component: UserProfile,
+      },
+      {
+        // UserPosts will be rendered inside User's <router-view>
+        // when /user/:id/posts is matched
+        path: 'teste',
+        name: 'teste'
+        // component: UserProfile,
+      },
+    ],
 
   },
   {
