@@ -211,6 +211,9 @@ console.log("children => ", children)
             (darkMode && !transparentSidenav && whiteSidenav)
           }
         ></Divider>
+        <MDTypography color={textColor} variant="body2" fontWeight="medium" pl="1.5rem">
+        Cadastro
+      </MDTypography>
         {renderRoutes}
       </List>
       {/*<MDBox p={2} mt="auto">*/}

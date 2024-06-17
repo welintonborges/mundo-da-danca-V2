@@ -20,6 +20,8 @@ import ResetPassword from "auth/reset-password";
 
 // @mui icons
 import Icon from "@mui/material/Icon";
+import Empresas from "./layouts/empresas";
+import EmpresaFormulario from "./layouts/empresa-formulario";
 
 const routes = [
   {
@@ -28,32 +30,7 @@ const routes = [
     key: "dashboard",
     icon: <Icon fontSize="small">dashboard</Icon>,
     route: "/dashboard",
-    //
-    children: [
-      {
-        // UserProfile will be rendered inside User's <router-view>
-        // when /user/:id/profile is matched
-        path: 'profile',
-        name: 'Dashboard',
-        component: <Dashboard />,
-        // component: <Dashboard />,
-        // component: UserProfile,
-      },
-      {
-        // UserPosts will be rendered inside User's <router-view>
-        // when /user/:id/posts is matched
-        path: 'posts',
-        name: 'posts'
-        // component: UserProfile,
-      },
-      {
-        // UserPosts will be rendered inside User's <router-view>
-        // when /user/:id/posts is matched
-        path: 'teste',
-        name: 'teste'
-        // component: UserProfile,
-      },
-    ],
+    component: <Dashboard />,
 
   },
   {
@@ -63,6 +40,14 @@ const routes = [
     icon: <Icon fontSize="small">table_view</Icon>,
     route: "/tables",
     component: <Tables />,
+  },
+  {
+    type: "collapse",
+    name: "Empresa",
+    key: "empresa",
+    icon: <Icon fontSize="small">table_view</Icon>,
+    route: "/empresa",
+    component: <Empresas />,
   },
   {
     type: "collapse",
@@ -111,6 +96,12 @@ const routes = [
     icon: <Icon fontSize="small">person</Icon>,
     route: "/user-profile",
     component: <UserProfile />,
+  },
+  {
+    name: "Cadastro de empresa",
+    key: "empresa-formulario",
+    route: "/empresa-formulario",
+    component: <EmpresaFormulario />,
   },
   {
     type: "examples",

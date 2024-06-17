@@ -26,18 +26,19 @@ import {Collapse, List} from "@mui/material";
 import {useState} from "react";
 import {ExpandLess, ExpandMore} from "@mui/icons-material";
 import routes from "../../routes";
+import {NavLink} from "react-router-dom";
 
 function SidenavCollapse({ icon, name, active, children, ...rest }) {
   const [controller] = useMaterialUIController();
   const { miniSidenav, transparentSidenav, whiteSidenav, darkMode, sidenavColor } = controller;
   const  childrenCarregado = {...rest}
-    console.log("teste ==> ", childrenCarregado.rotas)
+    console.log("teste ==> ",  {...rest})
     const [open, setOpen] = useState(false);
     const handleToggle = () => {
         setOpen(!open);
     };
   return (
-    <ListItem button onClick={handleToggle} component="li">
+      <ListItem button onClick={handleToggle} component="li">
       <MDBox
         {...rest}
         sx={(theme) =>
@@ -50,7 +51,7 @@ function SidenavCollapse({ icon, name, active, children, ...rest }) {
           })
         }
       >
-          {/*{open? <ExpandLess /> : <ExpandMore />}*/}
+
         <ListItemIcon
           sx={(theme) =>
             collapseIconBox(theme, { transparentSidenav, whiteSidenav, darkMode, active })
@@ -75,37 +76,31 @@ function SidenavCollapse({ icon, name, active, children, ...rest }) {
           }
         />
 
-          {childrenCarregado.rotas  &&(
-          <Collapse in={open} timeout="auto" unmountOnExit>
-              <List component="div" disablePadding   >
-                  {childrenCarregado.rotas.map((child, index) => (
-                      <ListItemText
-                      primary={child.name}
-                      sx={(theme) =>
-                          collapseText(theme, {
-                              miniSidenav,
-                              transparentSidenav,
-                              whiteSidenav,
-                              active
-                          })
-                       }
-                      />
+          {/*{open ? <ExpandLess /> : <ExpandMore />}*/}
 
-                  ))}
-                  {/*<ListItemText*/}
-                  {/*    primary={name}*/}
-                  {/*    sx={(theme) =>*/}
-                  {/*        collapseText(theme, {*/}
-                  {/*            miniSidenav,*/}
-                  {/*            transparentSidenav,*/}
-                  {/*            whiteSidenav,*/}
-                  {/*            active,*/}
-                  {/*        })*/}
-                  {/*    }*/}
-                  {/*/>*/}
-              </List>
-          </Collapse>
-          )}
+          {/*{childrenCarregado.rotas  &&(*/}
+
+          {/*<Collapse in={open} timeout="auto" unmountOnExit>*/}
+          {/*    <List component="div" disablePadding   >*/}
+          {/*        /!*{children}*!/*/}
+          {/*        {childrenCarregado.rotas.map((child, index) => (*/}
+
+          {/*            <ListItemText*/}
+          {/*            primary={child.name}*/}
+          {/*            sx={(theme) =>*/}
+          {/*                collapseText(theme, {*/}
+          {/*                    miniSidenav,*/}
+          {/*                    transparentSidenav,*/}
+          {/*                    whiteSidenav,*/}
+          {/*                    active*/}
+          {/*                })*/}
+          {/*             }*/}
+          {/*            />*/}
+
+          {/*        ))}*/}
+          {/*    </List>*/}
+          {/*</Collapse>*/}
+          {/*)}*/}
       </MDBox>
     </ListItem>
   );
@@ -114,6 +109,7 @@ function SidenavCollapse({ icon, name, active, children, ...rest }) {
 // Setting default values for the props of SidenavCollapse
 SidenavCollapse.defaultProps = {
   active: false,
+  children: PropTypes.node,
 };
 
 // Typechecking props for the SidenavCollapse

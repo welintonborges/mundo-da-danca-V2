@@ -20,7 +20,7 @@ import breakpoints from "assets/theme/base/breakpoints";
 import burceMars from "assets/images/bruce-mars.jpg";
 import backgroundImage from "assets/images/bg-profile.jpeg";
 
-function Header({ name, children }) {
+function HeaderEmpresa({ name, children }) {
   const [tabsOrientation, setTabsOrientation] = useState("horizontal");
   const [tabValue, setTabValue] = useState(0);
 
@@ -52,7 +52,7 @@ function Header({ name, children }) {
         display="flex"
         alignItems="center"
         position="relative"
-        minHeight="5rem"
+        minHeight="6rem"
         borderRadius="xl"
         // sx={{
         //   backgroundImage: ({ functions: { rgba, linearGradient }, palette: { gradients } }) =>
@@ -75,17 +75,17 @@ function Header({ name, children }) {
         }}
       >
         <Grid container spacing={3} alignItems="center">
-          <Grid item>
-            <MDAvatar src={burceMars} alt="profile-image" size="xl" shadow="sm" />
-          </Grid>
+          {/*<Grid item>*/}
+          {/*  <MDAvatar src={burceMars} alt="profile-image" size="xl" shadow="sm" />*/}
+          {/*</Grid>*/}
           <Grid item>
             <MDBox height="100%" mt={0.5} lineHeight={1}>
               <MDTypography variant="h5" fontWeight="medium">
                 {name}
               </MDTypography>
-              <MDTypography variant="button" color="text" fontWeight="regular">
-                CEO / Co-Founder
-              </MDTypography>
+              {/*<MDTypography variant="button" color="text" fontWeight="regular">*/}
+              {/*  CEO / Co-Founder*/}
+              {/*</MDTypography>*/}
             </MDBox>
           </Grid>
         </Grid>
@@ -96,13 +96,13 @@ function Header({ name, children }) {
 }
 
 // Setting default props for the Header
-Header.defaultProps = {
+HeaderEmpresa.defaultProps = {
   children: "",
 };
 
 // Typechecking props for the Header
-Header.propTypes = {
+HeaderEmpresa.propTypes = {
   children: PropTypes.node,
 };
 
-export default Header;
+export default HeaderEmpresa;

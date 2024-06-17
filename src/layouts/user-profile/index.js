@@ -163,7 +163,7 @@ const UserProfile = () => {
               mr={2}
             >
               <MDTypography variant="body2" color="text" ml={1} fontWeight="regular">
-                Name
+                Name teste
               </MDTypography>
               <MDBox mb={2} width="100%">
                 <MDInput
