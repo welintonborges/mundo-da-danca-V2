@@ -22,6 +22,13 @@ import ResetPassword from "auth/reset-password";
 import Icon from "@mui/material/Icon";
 import Empresas from "./layouts/empresas";
 import EmpresaFormulario from "./layouts/empresas/formularios";
+import Alunos from "./layouts/alunos";
+import AlunoFormulario from "./layouts/alunos/formularios";
+import Funcionarios from "./layouts/funcionarios";
+import FuncionarioFormulario from "./layouts/funcionarios/formularios";
+import Turmas from "./layouts/turmas";
+import Turma from "./layouts/turmas";
+import TurmaFormulario from "./layouts/turmas/formularios";
 
 const routes = [
   {
@@ -33,13 +40,48 @@ const routes = [
     component: <Dashboard />,
 
   },
+  // {
+  //   type: "collapse",
+  //   name: "Tables",
+  //   key: "tables",
+  //   icon: <Icon fontSize="small">table_view</Icon>,
+  //   route: "/tables",
+  //   component: <Tables />,
+  // },  // {
+  //   type: "collapse",
+  //   name: "Tables",
+  //   key: "tables",
+  //   icon: <Icon fontSize="small">table_view</Icon>,
+  //   route: "/tables",
+  //   component: <Tables />,
+  // },
   {
     type: "collapse",
-    name: "Tables",
-    key: "tables",
+    name: "Aluno",
+    key: "aluno",
     icon: <Icon fontSize="small">table_view</Icon>,
-    route: "/tables",
-    component: <Tables />,
+    route: "/aluno",
+    component: <Alunos />,
+  },
+  {
+    name: "Cadastro de aluno",
+    key: "formulario-aluno",
+    route: "/formulario-aluno",
+    component: <AlunoFormulario />,
+  },
+  {
+    type: "collapse",
+    name: "Funcionario",
+    key: "funcionario",
+    icon: <Icon fontSize="small">table_view</Icon>,
+    route: "/funcionario",
+    component: <Funcionarios />,
+  },
+  {
+    name: "Cadastro de funcionario",
+    key: "formulario-funcionario",
+    route: "/formulario-funcionario",
+    component: <FuncionarioFormulario />,
   },
   {
     type: "collapse",
@@ -47,16 +89,36 @@ const routes = [
     key: "empresa",
     icon: <Icon fontSize="small">table_view</Icon>,
     route: "/empresa",
-    component: <Empresas />,
+    component: <Empresas/>,
+  },
+  {
+    name: "Cadastro de empresa",
+    key: "formularios",
+    route: "/formulario",
+    component: <EmpresaFormulario />,
   },
   {
     type: "collapse",
-    name: "Billing",
-    key: "billing",
-    icon: <Icon fontSize="small">receipt_long</Icon>,
-    route: "/billing",
-    component: <Billing />,
+    name: "Turma",
+    key: "turma",
+    icon: <Icon fontSize="small">table_view</Icon>,
+    route: "/turma",
+    component: <Turma/>,
   },
+  {
+    name: "Cadastro de turma",
+    key: "formularios",
+    route: "/formulario-turma",
+    component: <TurmaFormulario />,
+  },
+  // {
+  //   type: "collapse",
+  //   name: "Billing",
+  //   key: "billing",
+  //   icon: <Icon fontSize="small">receipt_long</Icon>,
+  //   route: "/billing",
+  //   component: <Billing />,
+  // },
   // {
   //   type: "collapse",
   //   name: "RTL",
@@ -65,14 +127,14 @@ const routes = [
   //   route: "/rtl",
   //   component: <RTL />,
   // },
-  {
-    type: "collapse",
-    name: "Notifications",
-    key: "notifications",
-    icon: <Icon fontSize="small">notifications</Icon>,
-    route: "/notifications",
-    component: <Notifications />,
-  },
+  // {
+  //   type: "collapse",
+  //   name: "Notifications",
+  //   key: "notifications",
+  //   icon: <Icon fontSize="small">notifications</Icon>,
+  //   route: "/notifications",
+  //   component: <Notifications />,
+  // },
   {
     type: "collapse",
     name: "Profile",
@@ -96,12 +158,6 @@ const routes = [
     icon: <Icon fontSize="small">person</Icon>,
     route: "/user-profile",
     component: <UserProfile />,
-  },
-  {
-    name: "Cadastro de empresa",
-    key: "formularios",
-    route: "/formulario",
-    component: <EmpresaFormulario />,
   },
   {
     type: "examples",
