@@ -47,7 +47,7 @@ function Alunos() {
                       Alunos
                     </MDTypography>
                   </Grid>
-                  <Grid item xs={2}>
+                  <Grid item >
                     <MDButton
                         placement="right"
                         variant="gradient"
