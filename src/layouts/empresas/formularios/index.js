@@ -1,41 +1,35 @@
 import {useState, useEffect} from "react";
 import * as React from 'react';
 // Material Dashboard 2 React components
-import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
-import MDInput from "components/MDInput";
-import MDButton from "components/MDButton";
-import MDAlert from "components/MDAlert";
+import MDBox from "../../../components/MDBox";
+import MDTypography from "../../../components/MDTypography";
+import MDInput from "../../../components/MDInput";
+import MDButton from "../../../components/MDButton";
+import MDAlert from "../../../components/MDAlert";
 
 // Material Dashboard 2 React example components
-import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
-import DashboardNavbar from "examples/Navbars/DashboardNavbar";
-import Footer from "examples/Footer";
-
-// Overview page components
-import Header from "layouts/user-profile/Header";
-
-import AuthService from "../../services/auth-service";
+import DashboardLayout from "../../../examples/LayoutContainers/DashboardLayout";
+import DashboardNavbar from "../../../examples/Navbars/DashboardNavbar";
+import Footer from "../../../examples/Footer";
+import AuthService from "../../../services/auth-service";
 import Box from "@mui/material/Box";
 import {Step, StepButton, StepLabel, Stepper, Typography} from "@mui/material";
 import Button from "@mui/material/Button";
 import HeaderEmpresa from "./Header";
 import DadosFormulario from "./dadosFormulario";
-import CssBaseline from "@mui/material/CssBaseline";
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
 import EnderecoFormulario from "./enderecoFormulario";
 
-const steps = ['Dados Gerais', 'Dados Contato', 'Logo'];
+const steps = ['Dados Gerais', 'Dados Contato', 'Logo', 'Resumo'];
 
 function getStepContent(step) {
+    console.log("step ==> ", step)
     switch (step) {
         case 0:
             return <DadosFormulario/>;
         case 1:
             return <EnderecoFormulario/>;
         case 2:
-        // return <Review />;
+            return <EnderecoFormulario/>;
         default:
         // throw new Error('Unknown steps');
     }
@@ -58,7 +52,7 @@ const EmpresaFormulario = () => {
     // };
 
     const isStepOptional = (step) => {
-        return step === 1;
+        return step != 0;
     };
 
     const handleNext = () => {
@@ -241,7 +235,7 @@ const EmpresaFormulario = () => {
                                                         <Button
                                                             variant="contained"
                                                             color="primary"
-                                                            disabled={activeStep === 0}
+                                                            // disabled={activeStep === 0}
                                                             onClick={handleBack}
                                                             sx={{ mr: 1 }}
                                                         >
@@ -255,7 +249,7 @@ const EmpresaFormulario = () => {
                                                         onClick={handleNext}
                                                         // className={classes.button}
                                                     >
-                                                        {activeStep === steps.length - 1 ? 'Enviar' : 'Proxima'}
+                                                        {activeStep === steps.length - 1 ? 'Enviar' : 'Proxima 01'}
                                                     </Button>
                                                 </Box>
 

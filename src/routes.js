@@ -21,7 +21,7 @@ import ResetPassword from "auth/reset-password";
 // @mui icons
 import Icon from "@mui/material/Icon";
 import Empresas from "./layouts/empresas";
-import EmpresaFormulario from "./layouts/empresa-formulario";
+import EmpresaFormulario from "./layouts/empresas/formularios";
 
 const routes = [
   {
@@ -99,8 +99,8 @@ const routes = [
   },
   {
     name: "Cadastro de empresa",
-    key: "empresa-formulario",
-    route: "/empresa-formulario",
+    key: "formularios",
+    route: "/formulario",
     component: <EmpresaFormulario />,
   },
   {

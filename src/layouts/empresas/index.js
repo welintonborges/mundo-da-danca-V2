@@ -59,7 +59,7 @@ function Empresas() {
                         type="button"
                         endIcon={<SendIcon />}
                         // to="/empresa-formulario"
-                         href="/empresa-formulario"
+                         href="/formulario"
                         // onClick={handleLogOut}
                     >
                       Novo
