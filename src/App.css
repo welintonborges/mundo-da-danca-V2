@@ -1,0 +1,43 @@
+.imagem{
+    height: 214px;
+    width: 382px;
+}
+
+label#thumbnail-pro {
+    margin-bottom: 20px ;
+     border-radius: 5%;
+    transition: all 600ms ease 0s;
+    width: 365px ;
+    height: 184px;
+    align-items: center;
+    border: 1px dashed #7c7e80;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+label#thumbnail-pro.has-thumbnail{
+    height: 214px;
+    background-size: cover;
+    border-radius: 10px;
+    background-repeat: no-repeat;
+    transition: all 600ms ease 0s;
+    width: 382px;
+    left: 157px;
+}
+
+label#thumbnail-pro input{
+    display: none;
+}
+
+label#thumbnail-pro.has-thumbnail {
+    border: 0;
+}
+
+label#thumbnail-pro.has-thumbnail img{
+    display: none;
+}
+.descricao-foto{
+    font-size: 10px;
+    margin-bottom: 5px;
+}

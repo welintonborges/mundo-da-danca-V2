@@ -22,9 +22,10 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import Botao from "../../../components/Botao";
 import Grid from "@mui/material/Grid";
+import FotoFormulario from "./fotoFormulario";
 
 
-const steps = ['Dados Gerais', 'Dados Contato', 'Logo', 'Resumo'];
+const steps = ['Dados Gerais', 'Dados Contato', 'Foto', 'Resumo'];
 
 function getStepContent(step) {
     console.log("step ==> ", step)
@@ -34,7 +35,7 @@ function getStepContent(step) {
         case 1:
             return <EnderecoFormulario/>;
         case 2:
-            return <EnderecoFormulario/>;
+            return <FotoFormulario/>;
         default:
         // throw new Error('Unknown steps');
     }

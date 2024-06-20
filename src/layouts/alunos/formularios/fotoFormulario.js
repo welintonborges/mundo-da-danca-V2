@@ -1,19 +1,17 @@
 import {Typography} from "@mui/material";
 import MDBox from "../../../components/MDBox";
-import MDTypography from "../../../components/MDTypography";
-import MDInput from "../../../components/MDInput";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
 import * as React from "react";
-import {useState} from "react";
+import {useMemo, useState} from "react";
 import Stack from '@mui/material/Stack';
 import BotaoTexto from "../../../components/BotaoTexto";
-import Botao from "../../../components/Botao";
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import MDButton from "../../../components/MDButton";
 import SearchIcon from '@mui/icons-material/Search';
+import BotaoUploadImagem from "../../../components/BotoaUplodImagem";
+import MDTypography from "../../../components/MDTypography";
+import MDInput from "../../../components/MDInput";
 
-const EnderecoFormulario = () => {
+
+const FotoFormulario = () => {
     const [isDemo, setIsDemo] = useState(false);
     const [user, setUser] = useState({
         name: "",
@@ -35,6 +33,7 @@ const EnderecoFormulario = () => {
         confirmPassError: false,
     });
 
+
     return (
         <section>
             <form>
@@ -45,24 +44,25 @@ const EnderecoFormulario = () => {
                                    direction={{xs: 'column', sm: 'row'}}
                                    spacing={{xs: 1, sm: 1, md: 1}}
                             >
-
-                                <BotaoTexto
-                                    title="Endereço"
-                                    type="text"
-                                    placeholder="Digite seu endereço ..."
-                                />
-                                <BotaoTexto
-                                    title="Complemento"
-                                    type="text"
-                                    placeholder="Digite seu numero ..."
-                                />
-                                <BotaoTexto
-                                    title="Cidade"
-                                    type="text"
-                                    placeholder="Digite seu cidade ..."
+                                <BotaoUploadImagem
+                                title="Selecione uma imagen"
                                 />
 
                             </Stack>
+                            <MDBox
+                                display="flex"
+                                flexDirection="column"
+                                alignItems="flex-start"
+                                width="100%"
+                                ml={2}
+                            >
+                                {/*<div className="descricao-foto" id="descicao-foto">*/}
+                                {/*    A dimensão recomendada é de 1600 x 838*/}
+                                {/*    (mesma proporção do formato utilizado nas páginas de evento no Facebook).*/}
+                                {/*    Formato JPEG, GIF ou PNG de no máximo 2MB.*/}
+                                {/*    Imagens com dimensões diferentes serão redimensionadas.*/}
+                                {/*</div>*/}
+                            </MDBox>
                         </MDBox>
 
                         <MDBox display="flex" flexDirection="column" mb={3}>
@@ -96,7 +96,7 @@ const EnderecoFormulario = () => {
                                         type="button"
                                         size="lg"
                                     >
-                                        <SearchIcon sx={{ fontSize: 40 }} />
+                                        <SearchIcon sx={{fontSize: 40}}/>
                                     </MDButton>
                                 </Stack>
                             </MDBox>
@@ -108,4 +108,4 @@ const EnderecoFormulario = () => {
     )
 }
 
-export default EnderecoFormulario;
+export default FotoFormulario;
