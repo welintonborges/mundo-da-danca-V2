@@ -29,7 +29,7 @@ const  CabecalhoTabela = (props) =>{
                 color="info"
                 nome_botao="novo"
                 url="/formulario-aluno"
-                icon={<SendIcon />}
+                endIcon={<SendIcon />}
             />
         </Grid>
     </MDBox>

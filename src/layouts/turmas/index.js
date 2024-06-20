@@ -35,7 +35,7 @@ function Turma() {
                                 title="Turmas"
                                 nome_botao="novo"
                                 url="/formulario-turma"
-                                icon={<SendIcon />}
+                                endIcon={<SendIcon />}
                             />
                             <MDBox pt={3}>
                                 <DataTable

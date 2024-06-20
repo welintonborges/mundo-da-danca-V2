@@ -16,11 +16,12 @@ import Box from "@mui/material/Box";
 import {Step, StepButton, StepLabel, Stepper, Typography} from "@mui/material";
 import Button from "@mui/material/Button";
 import HeaderAluno from "./Header";
-import EnderecoFormulario from "./enderecoFormulario";
 import DadosFormulario from "./dadosFormulario";
+import EnderecoFormulario from "./enderecoFormulario";
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import Botao from "../../../components/Botao";
+import Grid from "@mui/material/Grid";
 
 
 const steps = ['Dados Gerais', 'Dados Contato', 'Logo', 'Resumo'];
@@ -209,16 +210,16 @@ const AlunoFormulario = () => {
                                 <Typography component="h1" variant="h4" align="center">
                                     Cadastro de Aluno
                                 </Typography>
-                                <Stepper activeStep={activeStep}>
-                                    {steps.map((label, index) => (
-                                        <Step key={label} completed={completed[index]}>
-                                            {/*<StepLabel>{label}</StepLabel>*/}
-                                            <StepButton color="inherit" onClick={handleStep(index)}>
-                                                {label}
-                                            </StepButton>
-                                        </Step>
-                                    ))}
-                                </Stepper>
+                                    <Stepper nonLinear activeStep={activeStep}>
+                                        {steps.map((label, index) => (
+                                            <Step key={label} completed={completed[index]}>
+                                                <StepButton color="inherit" onClick={handleStep(index)}>
+                                                    {label}
+                                                </StepButton>
+                                            </Step>
+                                        ))}
+                                    </Stepper>
+
                                 <React.Fragment>
                                     {activeStep === steps.length ? (
                                         <React.Fragment>
@@ -238,29 +239,29 @@ const AlunoFormulario = () => {
                                                 <Box sx={{display: 'flex', flexDirection: 'row', pt: 2}}>
                                                     {isStepOptional(activeStep) && (
                                                         <Botao
+                                                            ml={2}
                                                             color="info"
                                                             onClick={handleBack}
                                                             nome_botao="Voltar"
-                                                            icon={<ArrowBackIosIcon />}
+                                                            startIcon={<ArrowBackIosIcon/>}
                                                         />
                                                     )}
                                                     <Box sx={{flex: '1 1 auto'}}/>
                                                     <Botao
                                                         color="info"
                                                         onClick={handleNext}
-                                                        nome_botao= {activeStep === steps.length - 1 ? 'Enviar' : 'Proxima'}
-                                                        icon={<ArrowForwardIosIcon />}
+                                                        nome_botao={activeStep === steps.length - 1 ? 'Enviar' : 'Proxima'}
+                                                        endIcon={<ArrowForwardIosIcon/>}
                                                     />
                                                 </Box>
-                                            ):(
+                                            ) : (
                                                 <Box sx={{display: 'flex', flexDirection: 'row', pt: 2}}>
-
                                                     <Box sx={{flex: '1 1 auto'}}/>
                                                     <Botao
                                                         color="info"
                                                         onClick={handleNext}
-                                                        nome_botao= {activeStep === steps.length - 1 ? '' : 'Proxima'}
-                                                        icon={<ArrowForwardIosIcon />}
+                                                        nome_botao={activeStep === steps.length - 1 ? '' : 'Proxima'}
+                                                        endIcon={<ArrowForwardIosIcon/>}
                                                     />
                                                 </Box>
                                             )}
@@ -268,367 +269,6 @@ const AlunoFormulario = () => {
                                         </React.Fragment>
                                     )}
                                 </React.Fragment>
-                                {/*{activeStep == 0 ? (*/}
-                                {/*    <React.Fragment>*/}
-                                {/*      <Typography sx={{ mt: 2, mb: 2 }}>*/}
-                                {/*        <>*/}
-                                {/*          <MDBox display="flex" flexDirection="row" mt={5} mb={3}>*/}
-                                {/*            <MDBox*/}
-                                {/*                display="flex"*/}
-                                {/*                flexDirection="column"*/}
-                                {/*                alignItems="flex-start"*/}
-                                {/*                width="100%"*/}
-                                {/*                mr={2}*/}
-                                {/*            >*/}
-                                {/*              <MDTypography variant="body2" color="text" ml={1} fontWeight="regular">*/}
-                                {/*                Name teste*/}
-                                {/*              </MDTypography>*/}
-                                {/*              <MDBox mb={2} width="100%">*/}
-                                {/*                <MDInput*/}
-                                {/*                    type="name"*/}
-                                {/*                    fullWidth*/}
-                                {/*                    name="name"*/}
-                                {/*                    value={user.name}*/}
-                                {/*                    onChange={changeHandler}*/}
-                                {/*                    error={errors.nameError}*/}
-                                {/*                />*/}
-                                {/*                {errors.nameError && (*/}
-                                {/*                    <MDTypography variant="caption" color="error" fontWeight="light">*/}
-                                {/*                      The name can not be null*/}
-                                {/*                    </MDTypography>*/}
-                                {/*                )}*/}
-                                {/*              </MDBox>*/}
-                                {/*            </MDBox>*/}
-                                {/*            <MDBox*/}
-                                {/*                display="flex"*/}
-                                {/*                flexDirection="column"*/}
-                                {/*                alignItems="flex-start"*/}
-                                {/*                width="100%"*/}
-                                {/*                ml={2}*/}
-                                {/*            >*/}
-                                {/*              <MDTypography variant="body2" color="text" ml={1} fontWeight="regular">*/}
-                                {/*                Email*/}
-                                {/*              </MDTypography>*/}
-                                {/*              <MDBox mb={1} width="100%">*/}
-                                {/*                <MDInput*/}
-                                {/*                    type="email"*/}
-                                {/*                    fullWidth*/}
-                                {/*                    name="email"*/}
-                                {/*                    value={user.email}*/}
-                                {/*                    onChange={changeHandler}*/}
-                                {/*                    error={errors.emailError}*/}
-                                {/*                    disabled={isDemo}*/}
-                                {/*                />*/}
-                                {/*                {errors.emailError && (*/}
-                                {/*                    <MDTypography variant="caption" color="error" fontWeight="light">*/}
-                                {/*                      The email must be valid*/}
-                                {/*                    </MDTypography>*/}
-                                {/*                )}*/}
-                                {/*              </MDBox>*/}
-                                {/*              {isDemo && (*/}
-                                {/*                  <MDTypography variant="caption" color="text" fontWeight="light">*/}
-                                {/*                    In the demo version the email can not be updated*/}
-                                {/*                  </MDTypography>*/}
-                                {/*              )}*/}
-                                {/*            </MDBox>*/}
-                                {/*          </MDBox>*/}
-
-                                {/*          <MDBox display="flex" flexDirection="column" mb={3}>*/}
-                                {/*            <MDBox display="flex" flexDirection="row">*/}
-                                {/*              <MDBox*/}
-                                {/*                  display="flex"*/}
-                                {/*                  flexDirection="column"*/}
-                                {/*                  alignItems="flex-start"*/}
-                                {/*                  width="100%"*/}
-                                {/*                  mr={2}*/}
-                                {/*              >*/}
-                                {/*                <MDTypography variant="body2" color="text" ml={1} fontWeight="regular">*/}
-                                {/*                  New Password*/}
-                                {/*                </MDTypography>*/}
-                                {/*                <MDBox mb={2} width="100%">*/}
-                                {/*                  <MDInput*/}
-                                {/*                      type="password"*/}
-                                {/*                      fullWidth*/}
-                                {/*                      name="newPassword"*/}
-                                {/*                      placeholder="New Password"*/}
-                                {/*                      value={user.newPassword}*/}
-                                {/*                      onChange={changeHandler}*/}
-                                {/*                      error={errors.newPassError}*/}
-                                {/*                      disabled={isDemo}*/}
-                                {/*                      inputProps={{*/}
-                                {/*                        autoComplete: "new-password",*/}
-                                {/*                        form: {*/}
-                                {/*                          autoComplete: "off",*/}
-                                {/*                        },*/}
-                                {/*                      }}*/}
-                                {/*                  />*/}
-                                {/*                  {errors.newPassError && (*/}
-                                {/*                      <MDTypography variant="caption" color="error" fontWeight="light">*/}
-                                {/*                        The password must be of at least 8 characters*/}
-                                {/*                      </MDTypography>*/}
-                                {/*                  )}*/}
-                                {/*                </MDBox>*/}
-                                {/*              </MDBox>*/}
-                                {/*              <MDBox*/}
-                                {/*                  display="flex"*/}
-                                {/*                  flexDirection="column"*/}
-                                {/*                  alignItems="flex-start"*/}
-                                {/*                  width="100%"*/}
-                                {/*                  ml={2}*/}
-                                {/*              >*/}
-                                {/*                <MDTypography variant="body2" color="text" ml={1} fontWeight="regular">*/}
-                                {/*                  Password Confirmation*/}
-                                {/*                </MDTypography>*/}
-                                {/*                <MDBox mb={1} width="100%">*/}
-                                {/*                  <MDInput*/}
-                                {/*                      type="password"*/}
-                                {/*                      fullWidth*/}
-                                {/*                      name="confirmPassword"*/}
-                                {/*                      placeholder="Confirm Password"*/}
-                                {/*                      value={user.confirmPassword}*/}
-                                {/*                      onChange={changeHandler}*/}
-                                {/*                      error={errors.confirmPassError}*/}
-                                {/*                      disabled={isDemo}*/}
-                                {/*                      inputProps={{*/}
-                                {/*                        autoComplete: "confirmPassword",*/}
-                                {/*                        form: {*/}
-                                {/*                          autoComplete: "off",*/}
-                                {/*                        },*/}
-                                {/*                      }}*/}
-                                {/*                  />*/}
-                                {/*                  {errors.confirmPassError && (*/}
-                                {/*                      <MDTypography variant="caption" color="error" fontWeight="light">*/}
-                                {/*                        The password confirmation must match the current password*/}
-                                {/*                      </MDTypography>*/}
-                                {/*                  )}*/}
-                                {/*                </MDBox>*/}
-                                {/*                {isDemo && (*/}
-                                {/*                    <MDTypography variant="caption" color="text" ml={1} fontWeight="light">*/}
-                                {/*                      In the demo version the password can not be updated*/}
-                                {/*                    </MDTypography>*/}
-                                {/*                )}*/}
-                                {/*              </MDBox>*/}
-                                {/*            </MDBox>*/}
-                                {/*            /!*<MDBox mt={4} display="flex" justifyContent="end">*!/*/}
-                                {/*            /!*  <MDButton variant="gradient" color="info" type="submit">*!/*/}
-                                {/*            /!*    Save changes*!/*/}
-                                {/*            /!*  </MDButton>*!/*/}
-                                {/*            /!*</MDBox>*!/*/}
-                                {/*          </MDBox>*/}
-
-                                {/*        </>*/}
-
-                                {/*      </Typography>*/}
-                                {/*      <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>*/}
-                                {/*        <Box sx={{ flex: '1 1 auto' }} />*/}
-                                {/*        /!* <Button onClick={handleReset}>Reset</Button> *!/*/}
-
-                                {/*        <Button onClick={handleNext}>*/}
-                                {/*          {activeStep === steps.length - 1 ? 'Finish' : 'Proximar'}*/}
-                                {/*        </Button>*/}
-                                {/*      </Box>*/}
-                                {/*    </React.Fragment>*/}
-                                {/*) : (*/}
-                                {/*    <React.Fragment>*/}
-                                {/*      {activeStep == 1 ? (*/}
-                                {/*          <>*/}
-                                {/*          <MDBox display="flex" flexDirection="row" mt={5} mb={3}>*/}
-                                {/*            <MDBox*/}
-                                {/*                display="flex"*/}
-                                {/*                flexDirection="column"*/}
-                                {/*                alignItems="flex-start"*/}
-                                {/*                width="100%"*/}
-                                {/*                mr={2}*/}
-                                {/*            >*/}
-                                {/*              <MDTypography variant="body2" color="text" ml={1} fontWeight="regular">*/}
-                                {/*                Name teste*/}
-                                {/*              </MDTypography>*/}
-                                {/*              <MDBox mb={2} width="100%">*/}
-                                {/*                <MDInput*/}
-                                {/*                    type="name"*/}
-                                {/*                    fullWidth*/}
-                                {/*                    name="name"*/}
-                                {/*                    value={user.name}*/}
-                                {/*                    onChange={changeHandler}*/}
-                                {/*                    error={errors.nameError}*/}
-                                {/*                />*/}
-                                {/*                {errors.nameError && (*/}
-                                {/*                    <MDTypography variant="caption" color="error" fontWeight="light">*/}
-                                {/*                      The name can not be null*/}
-                                {/*                    </MDTypography>*/}
-                                {/*                )}*/}
-                                {/*              </MDBox>*/}
-                                {/*            </MDBox>*/}
-                                {/*            <MDBox*/}
-                                {/*                display="flex"*/}
-                                {/*                flexDirection="column"*/}
-                                {/*                alignItems="flex-start"*/}
-                                {/*                width="100%"*/}
-                                {/*                ml={2}*/}
-                                {/*            >*/}
-                                {/*              <MDTypography variant="body2" color="text" ml={1} fontWeight="regular">*/}
-                                {/*                Email*/}
-                                {/*              </MDTypography>*/}
-                                {/*              <MDBox mb={1} width="100%">*/}
-                                {/*                <MDInput*/}
-                                {/*                    type="email"*/}
-                                {/*                    fullWidth*/}
-                                {/*                    name="email"*/}
-                                {/*                    value={user.email}*/}
-                                {/*                    onChange={changeHandler}*/}
-                                {/*                    error={errors.emailError}*/}
-                                {/*                    disabled={isDemo}*/}
-                                {/*                />*/}
-                                {/*                {errors.emailError && (*/}
-                                {/*                    <MDTypography variant="caption" color="error" fontWeight="light">*/}
-                                {/*                      The email must be valid*/}
-                                {/*                    </MDTypography>*/}
-                                {/*                )}*/}
-                                {/*              </MDBox>*/}
-                                {/*              {isDemo && (*/}
-                                {/*                  <MDTypography variant="caption" color="text" fontWeight="light">*/}
-                                {/*                    In the demo version the email can not be updated*/}
-                                {/*                  </MDTypography>*/}
-                                {/*              )}*/}
-                                {/*            </MDBox>*/}
-                                {/*          </MDBox>*/}
-
-                                {/*          <MDBox display="flex" flexDirection="column" mb={3}>*/}
-                                {/*            <MDBox display="flex" flexDirection="row">*/}
-                                {/*              <MDBox*/}
-                                {/*                  display="flex"*/}
-                                {/*                  flexDirection="column"*/}
-                                {/*                  alignItems="flex-start"*/}
-                                {/*                  width="100%"*/}
-                                {/*                  mr={2}*/}
-                                {/*              >*/}
-                                {/*                <MDTypography variant="body2" color="text" ml={1} fontWeight="regular">*/}
-                                {/*                  New Password*/}
-                                {/*                </MDTypography>*/}
-                                {/*                <MDBox mb={2} width="100%">*/}
-                                {/*                  <MDInput*/}
-                                {/*                      type="password"*/}
-                                {/*                      fullWidth*/}
-                                {/*                      name="newPassword"*/}
-                                {/*                      placeholder="New Password"*/}
-                                {/*                      value={user.newPassword}*/}
-                                {/*                      onChange={changeHandler}*/}
-                                {/*                      error={errors.newPassError}*/}
-                                {/*                      disabled={isDemo}*/}
-                                {/*                      inputProps={{*/}
-                                {/*                        autoComplete: "new-password",*/}
-                                {/*                        form: {*/}
-                                {/*                          autoComplete: "off",*/}
-                                {/*                        },*/}
-                                {/*                      }}*/}
-                                {/*                  />*/}
-                                {/*                  {errors.newPassError && (*/}
-                                {/*                      <MDTypography variant="caption" color="error" fontWeight="light">*/}
-                                {/*                        The password must be of at least 8 characters*/}
-                                {/*                      </MDTypography>*/}
-                                {/*                  )}*/}
-                                {/*                </MDBox>*/}
-                                {/*              </MDBox>*/}
-                                {/*              <MDBox*/}
-                                {/*                  display="flex"*/}
-                                {/*                  flexDirection="column"*/}
-                                {/*                  alignItems="flex-start"*/}
-                                {/*                  width="100%"*/}
-                                {/*                  ml={2}*/}
-                                {/*              >*/}
-                                {/*                <MDTypography variant="body2" color="text" ml={1} fontWeight="regular">*/}
-                                {/*                  Password Confirmation*/}
-                                {/*                </MDTypography>*/}
-                                {/*                <MDBox mb={1} width="100%">*/}
-                                {/*                  <MDInput*/}
-                                {/*                      type="password"*/}
-                                {/*                      fullWidth*/}
-                                {/*                      name="confirmPassword"*/}
-                                {/*                      placeholder="Confirm Password"*/}
-                                {/*                      value={user.confirmPassword}*/}
-                                {/*                      onChange={changeHandler}*/}
-                                {/*                      error={errors.confirmPassError}*/}
-                                {/*                      disabled={isDemo}*/}
-                                {/*                      inputProps={{*/}
-                                {/*                        autoComplete: "confirmPassword",*/}
-                                {/*                        form: {*/}
-                                {/*                          autoComplete: "off",*/}
-                                {/*                        },*/}
-                                {/*                      }}*/}
-                                {/*                  />*/}
-                                {/*                  {errors.confirmPassError && (*/}
-                                {/*                      <MDTypography variant="caption" color="error" fontWeight="light">*/}
-                                {/*                        The password confirmation must match the current password*/}
-                                {/*                      </MDTypography>*/}
-                                {/*                  )}*/}
-                                {/*                </MDBox>*/}
-                                {/*                {isDemo && (*/}
-                                {/*                    <MDTypography variant="caption" color="text" ml={1} fontWeight="light">*/}
-                                {/*                      In the demo version the password can not be updated*/}
-                                {/*                    </MDTypography>*/}
-                                {/*                )}*/}
-                                {/*              </MDBox>*/}
-                                {/*            </MDBox>*/}
-                                {/*            /!*<MDBox mt={4} display="flex" justifyContent="end">*!/*/}
-                                {/*            /!*  <MDButton variant="gradient" color="info" type="submit">*!/*/}
-                                {/*            /!*    Save changes*!/*/}
-                                {/*            /!*  </MDButton>*!/*/}
-                                {/*            /!*</MDBox>*!/*/}
-                                {/*          </MDBox>*/}
-
-                                {/*          </>*/}
-                                {/*          // <Typography sx={{ mt: 2, mb: 1 }}>oi a {activeStep + 1}</Typography>*/}
-                                {/*      ) : (*/}
-                                {/*          <Typography sx={{ mt: 2, mb: 1 }}>oi b {activeStep + 1}</Typography>*/}
-                                {/*      )}*/}
-
-                                {/*      {activeStep == 3 ? (*/}
-                                {/*          <Typography sx={{ mt: 2, mb: 1 }}>oi c {activeStep + 1}</Typography>*/}
-                                {/*      ) : (*/}
-                                {/*          ''*/}
-                                {/*      )}*/}
-
-                                {/*      <React.Fragment>*/}
-                                {/*        {getStepContent(activeStep)}*/}
-                                {/*        <div className={classes.buttons}>*/}
-                                {/*          {activeStep !== 0 && (*/}
-                                {/*              <Button onClick={handleBack} className={classes.button}>*/}
-                                {/*                Back*/}
-                                {/*              </Button>*/}
-                                {/*          )}*/}
-                                {/*          <Button*/}
-                                {/*              variant="contained"*/}
-                                {/*              color="primary"*/}
-                                {/*              onClick={handleNext}*/}
-                                {/*              className={classes.button}*/}
-                                {/*          >*/}
-                                {/*            {activeStep === steps.length - 1 ? 'Place order' : 'Next'}*/}
-                                {/*          </Button>*/}
-                                {/*        </div>*/}
-                                {/*      </React.Fragment>*/}
-
-                                {/*      <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>*/}
-                                {/*        <Button*/}
-                                {/*            color="inherit"*/}
-                                {/*            disabled={activeStep === 0}*/}
-                                {/*            onClick={handleBack}*/}
-                                {/*            sx={{ mr: 1 }}*/}
-                                {/*        >*/}
-                                {/*          Canselar*/}
-                                {/*        </Button>*/}
-                                {/*        <Box sx={{ flex: '1 1 auto' }} />*/}
-                                {/*        {isStepOptional(activeStep) && (*/}
-                                {/*            <Button color="inherit" onClick={handleSkip} sx={{ mr: 1 }}>*/}
-                                {/*              voltar*/}
-                                {/*            </Button>*/}
-                                {/*        )}*/}
-
-                                {/*        <Button onClick={handleNext}>*/}
-                                {/*          {activeStep === steps.length - 1 ? 'Finish' : 'Proximar'}*/}
-                                {/*        </Button>*/}
-                                {/*      </Box>*/}
-                                {/*    </React.Fragment>*/}
-                                {/*)}*/}
                             </Box>
                         </MDBox>
                     </MDBox>

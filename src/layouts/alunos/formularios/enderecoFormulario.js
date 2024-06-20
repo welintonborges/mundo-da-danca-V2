@@ -2,6 +2,8 @@ import {Typography} from "@mui/material";
 import MDBox from "../../../components/MDBox";
 import MDTypography from "../../../components/MDTypography";
 import MDInput from "../../../components/MDInput";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
 import * as React from "react";
 import {useState} from "react";
 import Stack from '@mui/material/Stack';
@@ -45,8 +47,9 @@ const EnderecoFormulario = () => {
                                     width="100%"
                                     mr={2}
                                 >
+
                                     <MDTypography variant="body2" color="text" ml={1} fontWeight="regular">
-                                        Nome
+                                        Endereço
                                     </MDTypography>
                                     <MDBox mb={2} width="100%">
                                         <MDInput
@@ -69,10 +72,10 @@ const EnderecoFormulario = () => {
                                     flexDirection="column"
                                     alignItems="flex-start"
                                     width="100%"
-                                    ml={2}
+                                    mr={2}
                                 >
                                     <MDTypography variant="body2" color="text" ml={1} fontWeight="regular">
-                                        Telefone
+                                        Cidade
                                     </MDTypography>
                                     <MDBox mb={1} width="100%">
                                         <MDInput
@@ -113,7 +116,7 @@ const EnderecoFormulario = () => {
                                         mr={2}
                                     >
                                         <MDTypography variant="body2" color="text" ml={1} fontWeight="regular">
-                                            E-mail
+                                            Estado
                                         </MDTypography>
                                         <MDBox mb={2} width="100%">
                                             <MDInput
@@ -147,7 +150,7 @@ const EnderecoFormulario = () => {
                                         ml={2}
                                     >
                                         <MDTypography variant="body2" color="text" ml={1} fontWeight="regular">
-                                            Razão social
+                                            CEP
                                         </MDTypography>
                                         <MDBox mb={1} width="100%">
                                             <MDInput

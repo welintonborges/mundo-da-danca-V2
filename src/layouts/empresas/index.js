@@ -40,7 +40,7 @@ function Empresas() {
                                 title="Empresas"
                                 nome_botao="novo"
                                 url="/formulario"
-                                icon={<SendIcon />}
+                                endIcon={<SendIcon />}
                             />
                             <MDBox pt={3}>
                                 <DataTable

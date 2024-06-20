@@ -35,7 +35,7 @@ function Funcionarios() {
                                 title="Funcionarios"
                                 nome_botao="novo"
                                 url="/formulario-funcionario"
-                                icon={<SendIcon />}
+                                endIcon={<SendIcon />}
                             />
                             <MDBox pt={3}>
                                 <DataTable
