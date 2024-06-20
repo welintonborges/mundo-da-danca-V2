@@ -6,6 +6,7 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import * as React from "react";
 import {useState} from "react";
+import Stack from '@mui/material/Stack';
 
 const DadosFormulario = () => {
     const [isDemo, setIsDemo] = useState(false);
@@ -33,10 +34,11 @@ const DadosFormulario = () => {
         <section>
             <form>
                 <React.Fragment>
-                    <Typography variant="h6" gutterBottom>
-                    </Typography>
-                    <Typography sx={{mt: 2, mb: 2}}>
-                        <MDBox display="flex" flexDirection="row" mt={5} mb={3}>
+                    <MDBox display="flex" flexDirection="row">
+                        <Stack width="100%"
+                               direction={{xs: 'column', sm: 'row'}}
+                               spacing={{xs: 1, sm: 1, md: 1}}
+                        >
                             <MDBox
                                 display="flex"
                                 flexDirection="column"
@@ -44,6 +46,7 @@ const DadosFormulario = () => {
                                 width="100%"
                                 mr={2}
                             >
+
                                 <MDTypography variant="body2" color="text" ml={1} fontWeight="regular">
                                     Endereço
                                 </MDTypography>
@@ -68,7 +71,7 @@ const DadosFormulario = () => {
                                 flexDirection="column"
                                 alignItems="flex-start"
                                 width="100%"
-                                ml={2}
+                                mr={2}
                             >
                                 <MDTypography variant="body2" color="text" ml={1} fontWeight="regular">
                                     Cidade
@@ -95,10 +98,15 @@ const DadosFormulario = () => {
                                     </MDTypography>
                                 )}
                             </MDBox>
-                        </MDBox>
+                        </Stack>
+                    </MDBox>
 
-                        <MDBox display="flex" flexDirection="column" mb={3}>
-                            <MDBox display="flex" flexDirection="row">
+                    <MDBox display="flex" flexDirection="column" mb={3}>
+                        <MDBox display="flex" flexDirection="row">
+                            <Stack width="100%"
+                                   direction={{xs: 'column', sm: 'row'}}
+                                   spacing={{xs: 1, sm: 1, md: 1}}
+                            >
                                 <MDBox
                                     display="flex"
                                     flexDirection="column"
@@ -172,23 +180,9 @@ const DadosFormulario = () => {
                                         </MDTypography>
                                     )}
                                 </MDBox>
-                            </MDBox>
-                            {/*<MDBox mt={4} display="flex" justifyContent="end">*/}
-                            {/*  <MDButton variant="gradient" color="info" type="submit">*/}
-                            {/*    Save changes*/}
-                            {/*  </MDButton>*/}
-                            {/*</MDBox>*/}
+                            </Stack>
                         </MDBox>
-
-                    </Typography>
-                    {/*<Box sx={{display: 'flex', flexDirection: 'row', pt: 2}}>*/}
-                    {/*    <Box sx={{flex: '1 1 auto'}}/>*/}
-                    {/*    /!* <Button onClick={handleReset}>Reset</Button> *!/*/}
-
-                    {/*    <Button onClick={handleNext}>*/}
-                    {/*        {activeStep === steps.length - 1 ? 'Finish' : 'Proximar'}*/}
-                    {/*    </Button>*/}
-                    {/*</Box>*/}
+                    </MDBox>
                 </React.Fragment>
             </form>
         </section>

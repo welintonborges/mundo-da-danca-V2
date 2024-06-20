@@ -1,8 +1,10 @@
 import Grid from "@mui/material/Grid";
 import MDTypography from "../MDTypography";
 import MDButton from "../MDButton";
-import SendIcon from "@mui/icons-material/Add";
+
 import MDBox from "../MDBox";
+import Botao from "../Botao";
+import SendIcon from "@mui/icons-material/Add";
 
 
 const  CabecalhoTabela = (props) =>{
@@ -23,20 +25,12 @@ const  CabecalhoTabela = (props) =>{
                     {props.title}
                 </MDTypography>
             </Grid>
-            <Grid item >
-                <MDButton
-                    placement="right"
-                    variant="gradient"
-                    color="info"
-                    type="button"
-                    endIcon={<SendIcon />}
-                    // to="/empresa-formulario"
-                    href={props.url}
-                    // onClick={handleLogOut}
-                >
-                    {props.nome_botao}
-                </MDButton>
-            </Grid>
+            <Botao
+                color="info"
+                nome_botao="novo"
+                url="/formulario-aluno"
+                icon={<SendIcon />}
+            />
         </Grid>
     </MDBox>
     )

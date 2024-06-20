@@ -34,7 +34,9 @@ function Turma() {
                             <CabecalhoTabela
                                 title="Turmas"
                                 nome_botao="novo"
-                                url="/formulario-turma"/>
+                                url="/formulario-turma"
+                                icon={<SendIcon />}
+                            />
                             <MDBox pt={3}>
                                 <DataTable
                                     table={{columns, rows}}
@@ -46,33 +48,6 @@ function Turma() {
                             </MDBox>
                         </Card>
                     </Grid>
-                    {/*<Grid item xs={12}>*/}
-                    {/*  <Card>*/}
-                    {/*    <MDBox*/}
-                    {/*      mx={2}*/}
-                    {/*      mt={-3}*/}
-                    {/*      py={3}*/}
-                    {/*      px={2}*/}
-                    {/*      variant="gradient"*/}
-                    {/*      bgColor="info"*/}
-                    {/*      borderRadius="lg"*/}
-                    {/*      coloredShadow="info"*/}
-                    {/*    >*/}
-                    {/*      <MDTypography variant="h6" color="white">*/}
-                    {/*        Projects Table*/}
-                    {/*      </MDTypography>*/}
-                    {/*    </MDBox>*/}
-                    {/*    <MDBox pt={3}>*/}
-                    {/*      <DataTable*/}
-                    {/*        table={{ columns: pColumns, rows: pRows }}*/}
-                    {/*        isSorted={false}*/}
-                    {/*        entriesPerPage={false}*/}
-                    {/*        showTotalEntries={false}*/}
-                    {/*        noEndBorder*/}
-                    {/*      />*/}
-                    {/*    </MDBox>*/}
-                    {/*  </Card>*/}
-                    {/*</Grid>*/}
                 </Grid>
             </MDBox>
             <Footer/>

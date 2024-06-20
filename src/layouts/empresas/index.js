@@ -36,9 +36,12 @@ function Empresas() {
                     <Grid item xs={12}>
                         <Card>
                             <CabecalhoTabela
+                                color={props.color}
                                 title="Empresas"
                                 nome_botao="novo"
-                                url="/formulario"/>
+                                url="/formulario"
+                                icon={<SendIcon />}
+                            />
                             <MDBox pt={3}>
                                 <DataTable
                                     table={{columns, rows}}

@@ -18,6 +18,9 @@ import Button from "@mui/material/Button";
 import HeaderAluno from "./Header";
 import EnderecoFormulario from "./enderecoFormulario";
 import DadosFormulario from "./dadosFormulario";
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import Botao from "../../../components/Botao";
 
 
 const steps = ['Dados Gerais', 'Dados Contato', 'Logo', 'Resumo'];
@@ -30,7 +33,7 @@ function getStepContent(step) {
         case 1:
             return <EnderecoFormulario/>;
         case 2:
-            return <EnderecoAluno/>;
+            return <EnderecoFormulario/>;
         default:
         // throw new Error('Unknown steps');
     }
@@ -57,6 +60,7 @@ const AlunoFormulario = () => {
     };
 
     const handleNext = () => {
+        console.log("aqui")
         setActiveStep(activeStep + 1);
     };
 
@@ -233,47 +237,31 @@ const AlunoFormulario = () => {
                                             {activeStep !== 0 ? (
                                                 <Box sx={{display: 'flex', flexDirection: 'row', pt: 2}}>
                                                     {isStepOptional(activeStep) && (
-                                                        <Button
-                                                            variant="contained"
-                                                            color="primary"
-                                                            // disabled={activeStep === 0}
+                                                        <Botao
+                                                            color="info"
                                                             onClick={handleBack}
-                                                            sx={{ mr: 1 }}
-                                                        >
-                                                            Voltar
-                                                        </Button>
+                                                            nome_botao="Voltar"
+                                                            icon={<ArrowBackIosIcon />}
+                                                        />
                                                     )}
                                                     <Box sx={{flex: '1 1 auto'}}/>
-                                                    <Button
-                                                        variant="contained"
-                                                        color="primary"
+                                                    <Botao
+                                                        color="info"
                                                         onClick={handleNext}
-                                                        // className={classes.button}
-                                                    >
-                                                        {activeStep === steps.length - 1 ? 'Enviar' : 'Proxima 01'}
-                                                    </Button>
+                                                        nome_botao= {activeStep === steps.length - 1 ? 'Enviar' : 'Proxima'}
+                                                        icon={<ArrowForwardIosIcon />}
+                                                    />
                                                 </Box>
-
-                                                // <Box    >
-                                                //     <Button
-                                                //         variant="contained"
-                                                //         color="primary"
-                                                //         onClick={handleBack}>
-                                                //         Voltar
-                                                //     </Button>
-                                                // </Box>
                                             ):(
                                                 <Box sx={{display: 'flex', flexDirection: 'row', pt: 2}}>
 
                                                     <Box sx={{flex: '1 1 auto'}}/>
-                                                    <Button
-                                                        variant="contained"
-                                                        color="primary"
+                                                    <Botao
+                                                        color="info"
                                                         onClick={handleNext}
-                                                        // className={classes.button}
-                                                    >
-                                                        {activeStep === steps.length - 1 ? '' : 'Proxima'}
-                                                    </Button>
+                                                        nome_botao= {activeStep === steps.length - 1 ? '' : 'Proxima'}
+                                                        icon={<ArrowForwardIosIcon />}
+                                                    />
                                                 </Box>
                                             )}
 

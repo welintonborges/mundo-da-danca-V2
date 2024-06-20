@@ -4,7 +4,7 @@ import Card from "@mui/material/Card";
 
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
-import MDTypography from "components/MDTypography";
+import SendIcon from "@mui/icons-material/Add";
 
 // Material Dashboard 2 React example components
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
@@ -31,8 +31,7 @@ function Alunos() {
                         <Card>
                             <CabecalhoTabela
                                 title="Aluno"
-                                nome_botao="novo"
-                                url="/formulario-aluno"/>
+                            />
                             <MDBox pt={3}>
                                 <DataTable
                                     table={{columns, rows}}

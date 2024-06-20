@@ -34,7 +34,9 @@ function Funcionarios() {
                             <CabecalhoTabela
                                 title="Funcionarios"
                                 nome_botao="novo"
-                                url="/formulario-funcionario"/>
+                                url="/formulario-funcionario"
+                                icon={<SendIcon />}
+                            />
                             <MDBox pt={3}>
                                 <DataTable
                                     table={{columns, rows}}
