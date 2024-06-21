@@ -10,6 +10,7 @@ import Button from "@mui/material/Button";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import * as PropTypes from "prop-types";
+import Grid from "@mui/material/Grid";
 
 
 function VisuallyHiddenInput(props) {
@@ -46,49 +47,53 @@ const BotaoUploadImagem = (props) => {
     };
 
     return (
-       <>
-           <MDBox position="relative" width="50%" shadow="xl" borderRadius="xl">
-               {preview? (
-                   <CardMedia
-                       src={preview}
-                       component="img"
-                       title="teste"
-                       sx={{
-                           maxWidth: "100%",
-                           margin: 0,
-                           boxShadow: ({ boxShadows: { md } }) => md,
-                           objectFit: "cover",
-                           objectPosition: "center",
-                       }}
-                   />
-               ) : (
-                   // <Button
-                   //     component="label"
-                   //     role={undefined}
-                   //     variant="contained"
-                   //     tabIndex={-1}
-                   //     startIcon={<CloudUploadIcon />}
-                   //     onClick={handleUploadImage}
-                   // >
-                   //     Upload file
-                   //     <VisuallyHiddenInput type="file" />
-                   // </Button>
+        <>
+                <Grid item xs={12} md={6}>
+                    <MDBox position="relative" width="100%"
+                           shadow="xl" borderRadius="xl">
+                        {preview ? (
+                            <CardMedia
+                                src={preview}
+                                component="img"
+                                title="teste"
+                                sx={{
+                                    maxWidth: "100%",
+                                    margin: 0,
+                                    boxShadow: ({boxShadows: {md}}) => md,
+                                    objectFit: "cover",
+                                    objectPosition: "center",
+                                }}
+                            />
+                        ) : (
+                            // <Button
+                            //     component="label"
+                            //     role={undefined}
+                            //     variant="contained"
+                            //     tabIndex={-1}
+                            //     startIcon={<CloudUploadIcon />}
+                            //     onClick={handleUploadImage}
+                            // >
+                            //     Upload file
+                            //     <VisuallyHiddenInput type="file" />
+                            // </Button>
 
-                    <Input type="file"
-                           onChange={handleImageChange}
-                           sx={{
-                               padding: '10px',
-                               border: '1px solid #ddd',
-                               borderRadius: '10px',
-                           }}
-                    >
-                        <img src={camera} alt="Selecione uma imagem"/>
-                        <ArrowForwardIosIcon/>
-                    </Input>
-               )}
-               <Button onClick={handleUploadImage} >Selecione uma image</Button>
-           </MDBox>
-       </>
+                            <Input type="file"
+                                   onChange={handleImageChange}
+                                   sx={{
+                                       padding: '10px',
+                                       border: '1px solid #ddd',
+                                       borderRadius: '10px',
+                                   }}
+                            >
+                                <img src={camera} alt="Selecione uma imagem"/>
+                                <ArrowForwardIosIcon/>
+                            </Input>
+                        )}
+                        <Button onClick={handleUploadImage}>Selecione uma image</Button>
+                    </MDBox>
+                </Grid>
+
+        </>
 
         // <div className="form-group">
         //     <label>{props.title} <span className="text-danger">*</span></label>
