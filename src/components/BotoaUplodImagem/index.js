@@ -11,6 +11,7 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import * as PropTypes from "prop-types";
 import Grid from "@mui/material/Grid";
+import Card from "@mui/material/Card";
 
 
 function VisuallyHiddenInput(props) {
@@ -48,22 +49,25 @@ const BotaoUploadImagem = (props) => {
 
     return (
         <>
-                <Grid item xs={12} md={6}>
-                    <MDBox position="relative" width="100%"
-                           shadow="xl" borderRadius="xl">
+            <Grid item xs={6} md={2} >
+                <MDBox position="relative" fullWidth  shadow="xl" borderRadius="xl">
                         {preview ? (
                             <CardMedia
                                 src={preview}
                                 component="img"
                                 title="teste"
                                 sx={{
-                                    maxWidth: "100%",
+                                    height: "250px",
+                                    width: "250px",
+                                    maxWidth: "80%",
+                                    maxHeight: "50%",
                                     margin: 0,
                                     boxShadow: ({boxShadows: {md}}) => md,
                                     objectFit: "cover",
                                     objectPosition: "center",
                                 }}
                             />
+
                         ) : (
                             // <Button
                             //     component="label"
@@ -85,14 +89,17 @@ const BotaoUploadImagem = (props) => {
                                        borderRadius: '10px',
                                    }}
                             >
+
+                                aqui
+
                                 <img src={camera} alt="Selecione uma imagem"/>
                                 <ArrowForwardIosIcon/>
                             </Input>
                         )}
                         <Button onClick={handleUploadImage}>Selecione uma image</Button>
                     </MDBox>
-                </Grid>
 
+            </Grid>
         </>
 
         // <div className="form-group">

@@ -49,20 +49,6 @@ const FotoFormulario = () => {
                                 />
 
                             </Stack>
-                            <MDBox
-                                display="flex"
-                                flexDirection="column"
-                                alignItems="flex-start"
-                                width="100%"
-                                ml={2}
-                            >
-                                {/*<div className="descricao-foto" id="descicao-foto">*/}
-                                {/*    A dimensão recomendada é de 1600 x 838*/}
-                                {/*    (mesma proporção do formato utilizado nas páginas de evento no Facebook).*/}
-                                {/*    Formato JPEG, GIF ou PNG de no máximo 2MB.*/}
-                                {/*    Imagens com dimensões diferentes serão redimensionadas.*/}
-                                {/*</div>*/}
-                            </MDBox>
                         </MDBox>
 
                         <MDBox display="flex" flexDirection="column" mb={3}>
