@@ -23,50 +23,63 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import Botao from "../../../components/Botao";
 import Grid from "@mui/material/Grid";
 import FotoFormulario from "./fotoFormulario";
+import ResumoFormulario from "./resumoFormulario";
 
 
 const steps = ['Dados Gerais', 'Dados Contato', 'Foto', 'Resumo'];
 
-function getStepContent(step) {
-    console.log("step ==> ", step)
-    switch (step) {
-        case 0:
-            return <DadosFormulario/>;
-        case 1:
-            return <EnderecoFormulario/>;
-        case 2:
-            return <FotoFormulario/>;
-        default:
-        // throw new Error('Unknown steps');
-    }
-}
-
-const AlunoFormulario = () => {
+const AlunoFormulario = (props) => {
     const [isDemo, setIsDemo] = useState(false);
     const [notification, setNotification] = useState(false);
     const [completed, setCompleted] = React.useState({});
-    const [user, setUser] = useState({
-        name: "",
-        email: "",
-        newPassword: "",
-        confirmPassword: "",
-    });
     const [activeStep, setActiveStep] = React.useState(0);
     const [skipped, setSkipped] = React.useState(new Set());
-    // const isStepOptional = (step) => {
-    //   return step === 1;
-    // };
-
     const isStepOptional = (step) => {
-        return step != 0;
+        return step <= 2;
     };
+    const [formDataAtual, setFormDataAtual] = useState({
+        dados: {
+            nome: '',
+            telefone: '',
+            email: '',
+            dataNascimento: '',
+        },
+        endereco: {
+            endereco:'',
+            complemento:'',
+            cidade:'',
+            bairro:'',
+            cep:'',
+            uf:''
+        },
+        foto: {
+            thumbnail:''
+        },
+    });
+    // const dados = formDataAtual.dados;
 
-    const handleNext = () => {
-        console.log("aqui")
+    // console.log("dados ==> ", dados);
+
+    const handleNext = (props) => {
         setActiveStep(activeStep + 1);
     };
 
-    const handleBack = () => {
+    function getStepContent(step) {
+        switch (step) {
+            case 0:
+                return <DadosFormulario formDataAtual={formDataAtual} setFormDataAtual={setFormDataAtual}/>;
+            case 1:
+                return <EnderecoFormulario  formDataAtual={formDataAtual} setFormDataAtual={setFormDataAtual}/>;
+            case 2:
+                return <FotoFormulario  formDataAtual={formDataAtual} setFormDataAtual={setFormDataAtual}/>;
+            case 3:
+                return <ResumoFormulario  formDataAtual={formDataAtual} setFormDataAtual={setFormDataAtual}/>;
+            default:
+             throw new Error('Unknown steps');
+        }
+    }
+
+    const handleBack = (props) => {
         setActiveStep(activeStep - 1);
     };
 
@@ -83,6 +96,7 @@ const AlunoFormulario = () => {
     });
 
     const getUserData = async () => {
+        console.log("getUserData")
         const response = await AuthService.getProfile();
         if (response.data.id == 1) {
             setIsDemo(process.env.REACT_APP_IS_DEMO === "true");
@@ -111,7 +125,6 @@ const AlunoFormulario = () => {
 
     const submitHandler = async (e) => {
         e.preventDefault();
-
         // validation
         const mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
@@ -211,26 +224,24 @@ const AlunoFormulario = () => {
                                 <Typography component="h1" variant="h4" align="center">
                                     Cadastro de Aluno
                                 </Typography>
-                                    <Stepper nonLinear activeStep={activeStep}>
-                                        {steps.map((label, index) => (
-                                            <Step key={label} completed={completed[index]}>
-                                                <StepButton color="inherit" onClick={handleStep(index)}>
-                                                    {label}
-                                                </StepButton>
-                                            </Step>
-                                        ))}
-                                    </Stepper>
+                                <Stepper nonLinear activeStep={activeStep}>
+                                    {steps.map((label, index) => (
+                                        <Step key={label} completed={completed[index]}>
+                                            <StepButton color="inherit" onClick={handleStep(index)}>
+                                                {label}
+                                            </StepButton>
+                                        </Step>
+                                    ))}
+                                </Stepper>
 
                                 <React.Fragment>
                                     {activeStep === steps.length ? (
                                         <React.Fragment>
                                             <Typography variant="h5" gutterBottom>
-                                                Thank you for your order.
+                                                Obrigado
                                             </Typography>
                                             <Typography variant="subtitle1">
-                                                Your order number is #2001539. We have emailed your order confirmation,
-                                                and will
-                                                send you an update when your order has shipped.
+                                                mensagem
                                             </Typography>
                                         </React.Fragment>
                                     ) : (

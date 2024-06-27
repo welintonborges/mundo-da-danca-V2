@@ -22,13 +22,15 @@ const BotaoTelefone = (props) => {
         '9': '[0-9]',
     };
 
-    const handleInputChange = (e) => {
-        const inputValue = e.target.value;
+    const handleInputChange = (evento) => {
+        const inputValue = evento.target.value;
         const formattedValue = phoneMask(inputValue);
         if (formattedValue.length <= 15) {
             setFormattedPhone(formattedValue);
         }
+        props.aoAlterado(evento.target.value)
     };
+
 
     return (
         <MDBox

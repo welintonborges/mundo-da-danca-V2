@@ -13,14 +13,14 @@ import Footer from "examples/Footer";
 import DataTable from "examples/Tables/DataTable";
 
 // Data
-import empresasTableData from "layouts/empresas/data/empresasTableData";
+import alunosTableData from "layouts/alunos/data/alunosTableData";
 import projectsTableData from "layouts/tables/data/projectsTableData";
 import CabecalhoTabela from "../../components/CabecalhoTabela";
 
 
 function Alunos() {
-    const {columns, rows} = empresasTableData();
-    const {columns: pColumns, rows: pRows} = projectsTableData();
+    const {columns, rows} = alunosTableData();
+    // const {columns: pColumns, rows: pRows} = projectsTableData();
 
     return (
         <DashboardLayout>

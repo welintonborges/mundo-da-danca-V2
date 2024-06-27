@@ -32,7 +32,7 @@ function SidenavCollapse({ icon, name, active, children, ...rest }) {
   const [controller] = useMaterialUIController();
   const { miniSidenav, transparentSidenav, whiteSidenav, darkMode, sidenavColor } = controller;
   const  childrenCarregado = {...rest}
-    console.log("teste ==> ",  {...rest})
+    // console.log("teste ==> ",  {...rest})
     const [open, setOpen] = useState(false);
     const handleToggle = () => {
         setOpen(!open);

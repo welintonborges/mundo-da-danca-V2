@@ -8,22 +8,11 @@ import Stack from '@mui/material/Stack';
 import BotaoTexto from "../../../components/BotaoTexto";
 import BotaoTelefone from "../../../components/BotaoTelefone";
 import InputMask from "react-input-mask";
+import {toFormData} from "axios";
 
-const DadosFormulario = () => {
+const DadosFormulario = ({ formDataAtual, setFormDataAtual }) => {
     const [isDemo, setIsDemo] = useState(false);
-    const [user, setUser] = useState({
-        name: "",
-        email: "",
-        newPassword: "",
-        confirmPassword: "",
-    });
 
-    const changeHandler = (e) => {
-        setUser({
-            ...user,
-            [e.target.name]: e.target.value,
-        });
-    };
     const [errors, setErrors] = useState({
         nameError: false,
         emailError: false,
@@ -31,9 +20,11 @@ const DadosFormulario = () => {
         confirmPassError: false,
     });
 
+    const dados = formDataAtual.dados;
+    console.log(dados);
     return (
         <section>
-            <form>
+            <form formDataAtual={formDataAtual}>
                 <React.Fragment>
                     <Typography sx={{mt: 2, mb: 2}}>
                         <MDBox display="flex" flexDirection="row" mt={5} mb={3}>
@@ -44,11 +35,15 @@ const DadosFormulario = () => {
                                 <BotaoTexto
                                 title="Nome"
                                 type="text"
+                                valor={formDataAtual.dados.nome}
+                                aoAlterado={(valor) => setFormDataAtual({...formDataAtual, dados: {...formDataAtual.dados, nome: valor } })}
                                 placeholder="Digite seu nome ..."
                                 />
                                 <BotaoTelefone
                                     title="Telefone"
                                     type="tel"
+                                    valor={formDataAtual.dados.telefone}
+                                    aoAlterado={(valor) => setFormDataAtual({...formDataAtual, dados: {...formDataAtual.dados, telefone: valor } })}
                                     placeholder="Digite seu telefone ..."
                                 />
                             </Stack>
@@ -62,12 +57,16 @@ const DadosFormulario = () => {
                                     <BotaoTexto
                                         title="E-mail"
                                         type="email"
+                                        valor={formDataAtual.dados.email}
+                                        aoAlterado={(valor) => setFormDataAtual({...formDataAtual, dados: {...formDataAtual.dados, email: valor } })}
                                         placeholder="Digite seu e-mail ..."
                                     />
 
                                     <BotaoTexto
                                         title="Data de nascimento"
                                         type="date"
+                                        valor={formDataAtual.dados.dataNascimento}
+                                        aoAlterado={(valor) => setFormDataAtual({...formDataAtual, dados: {...formDataAtual.dados, dataNascimento: valor } })}
                                         placeholder="Digite sua data de nascimento ..."
                                     />
                                 </Stack>

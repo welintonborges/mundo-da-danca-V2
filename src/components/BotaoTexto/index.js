@@ -5,6 +5,9 @@ import * as React from "react";
 
 
 const BotaoTexto = (props) => {
+    const aoDigitado = (evento) => {
+       props.aoAlterado(evento.target.value)
+    }
     return(
 
         <MDBox
@@ -22,10 +25,12 @@ const BotaoTexto = (props) => {
                     type={props.type}
                     fullWidth
                     name={props.name}
-                    value={props.value}
-                    onChange={props.onChange}
+                    value={props.valor}
+                    onChange={aoDigitado}
                     error={props.error}
                     placeholder={props.placeholder}
+                    required={props.obrigatorio}
+
                 />
                 {props.nameError && (
                     <MDTypography variant="caption" color="error" fontWeight="light">

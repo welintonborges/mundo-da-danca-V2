@@ -1,7 +1,7 @@
 import HttpService from "./htttp.service";
 
 class AuthService {
-  // authEndpoint = process.env.API_URL;
+   authEndpoint = process.env.API_URL;
 
   login = async (payload) => {
     const loginEndpoint = 'login';

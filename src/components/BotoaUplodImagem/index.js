@@ -24,9 +24,10 @@ const BotaoUploadImagem = (props) => {
     const [imageUrl, setImageUrl] = useState('');
     const [preview, setPreview] = useState('');
 
-    const handleImageChange = (event) => {
-        setImage(event.target.files[0]);
-        setPreview(URL.createObjectURL(event.target.files[0]));
+    const handleImageChange = (evento) => {
+        setImage(evento.target.files[0]);
+        setPreview(URL.createObjectURL(evento.target.files[0]));
+        props.aoAlterado(evento.target.files[0])
     };
 
     const handleUploadImage = () => {

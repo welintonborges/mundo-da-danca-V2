@@ -60,6 +60,7 @@ const UserProfile = () => {
   }, [notification]);
 
   const changeHandler = (e) => {
+    console.log("aqio")
     setUser({
       ...user,
       [e.target.name]: e.target.value,

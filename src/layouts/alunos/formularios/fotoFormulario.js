@@ -11,21 +11,10 @@ import MDTypography from "../../../components/MDTypography";
 import MDInput from "../../../components/MDInput";
 
 
-const FotoFormulario = () => {
+const FotoFormulario = ({ formDataAtual, setFormDataAtual }) => {
     const [isDemo, setIsDemo] = useState(false);
-    const [user, setUser] = useState({
-        name: "",
-        email: "",
-        newPassword: "",
-        confirmPassword: "",
-    });
+    console.log("form ==> ",formDataAtual)
 
-    const changeHandler = (e) => {
-        setUser({
-            ...user,
-            [e.target.name]: e.target.value,
-        });
-    };
     const [errors, setErrors] = useState({
         nameError: false,
         emailError: false,
@@ -45,6 +34,8 @@ const FotoFormulario = () => {
                                    spacing={{xs: 1, sm: 1, md: 1}}
                             >
                                 <BotaoUploadImagem
+                                    valor={formDataAtual.foto.thumbnail}
+                                    aoAlterado={(valor) => setFormDataAtual({...formDataAtual, foto: {...formDataAtual.foto, thumbnail: valor } })}
                                 title="Selecione uma imagen"
                                 />
 
@@ -58,32 +49,14 @@ const FotoFormulario = () => {
                                        spacing={{xs: 1, sm: 1, md: 1}}
                                 >
 
-                                    <BotaoTexto
-                                        title="Bairro"
-                                        type="text"
-                                        placeholder="Digite seu Bairro ..."
-                                        width="150px"
-                                    />
-                                    <BotaoTexto
-                                        title="UF"
-                                        type="text"
-                                        placeholder="Digite seu UF ..."
-                                        width="100px"
-                                    />
+                                    <div className="descricao-foto" id="descicao-foto">
+                                        A dimensão recomendada é de 1600 x 838
+                                        (mesma proporção do formato utilizado nas páginas de evento no Facebook).
+                                        Formato JPEG, GIF ou PNG de no máximo 2MB.
+                                        Imagens com dimensões diferentes serão redimensionadas.
 
-                                    <BotaoTexto
-                                        title="CEP"
-                                        type="text"
-                                        placeholder="Digite seu CEP ..."
-                                        width="150px"
-                                    />
+                                    </div>
 
-                                    <MDButton
-                                        type="button"
-                                        size="lg"
-                                    >
-                                        <SearchIcon sx={{fontSize: 40}}/>
-                                    </MDButton>
                                 </Stack>
                             </MDBox>
                         </MDBox>
