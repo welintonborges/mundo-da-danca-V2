@@ -17,12 +17,6 @@ const EnderecoFormulario = ({ formDataAtual, setFormDataAtual }) => {
 
     const [isDemo, setIsDemo] = useState(false);
 
-    const changeHandler = (e) => {
-        setUser({
-            ...user,
-            [e.target.name]: e.target.value,
-        });
-    };
     const [errors, setErrors] = useState({
         nameError: false,
         emailError: false,

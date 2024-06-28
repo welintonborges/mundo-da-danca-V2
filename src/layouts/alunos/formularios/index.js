@@ -56,6 +56,8 @@ const AlunoFormulario = (props) => {
             thumbnail:''
         },
     });
+
+
     // const dados = formDataAtual.dados;
 
     // console.log("dados ==> ", dados);
@@ -64,20 +66,7 @@ const AlunoFormulario = (props) => {
         setActiveStep(activeStep + 1);
     };
 
-    function getStepContent(step) {
-        switch (step) {
-            case 0:
-                return <DadosFormulario formDataAtual={formDataAtual} setFormDataAtual={setFormDataAtual}/>;
-            case 1:
-                return <EnderecoFormulario  formDataAtual={formDataAtual} setFormDataAtual={setFormDataAtual}/>;
-            case 2:
-                return <FotoFormulario  formDataAtual={formDataAtual} setFormDataAtual={setFormDataAtual}/>;
-            case 3:
-                return <ResumoFormulario  formDataAtual={formDataAtual} setFormDataAtual={setFormDataAtual}/>;
-            default:
-             throw new Error('Unknown steps');
-        }
-    }
+
 
     const handleBack = (props) => {
         setActiveStep(activeStep - 1);

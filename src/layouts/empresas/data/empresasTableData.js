@@ -7,134 +7,77 @@ import MDBadge from "components/MDBadge";
 import team2 from "assets/images/team-2.jpg";
 import team3 from "assets/images/team-3.jpg";
 import team4 from "assets/images/team-4.jpg";
+import {useEffect, useState} from "react";
+import CadastroService from "../../../services/cadastro-service";
+import * as React from "react";
 
 export default function data() {
-  const Author = ({ image, name, email }) => (
-    <MDBox display="flex" alignItems="center" lineHeight={1}>
-      <MDAvatar src={image} name={name} size="sm" />
-      <MDBox ml={2} lineHeight={1}>
-        <MDTypography display="block" variant="button" fontWeight="medium">
-          {name}
-        </MDTypography>
-        <MDTypography variant="caption">{email}</MDTypography>
+  // listargem
+  const [empresas, setEmpresas] = useState([]);
+
+  const getEmpresas = async () => {
+      console.log("getEmpresas")
+    const response = await CadastroService.getEmpresas();
+    console.log(response)
+    setEmpresas(response);
+
+  };
+
+
+  useEffect(() => {
+      getEmpresas();
+  },[]);
+
+  const Author = ({ image, name, sobrenome, email }) => (
+
+      <MDBox display="flex" alignItems="center" lineHeight={1}>
+        <MDAvatar src={image} name={name} size="sm" />
+        <MDBox ml={2} lineHeight={1}>
+          <MDTypography display="block" variant="button" fontWeight="medium">
+            {name} {sobrenome}
+          </MDTypography>
+          <MDTypography variant="caption">{email}</MDTypography>
+        </MDBox>
       </MDBox>
-    </MDBox>
   );
 
   const Job = ({ title, description }) => (
-    <MDBox lineHeight={1} textAlign="left">
-      <MDTypography display="block" variant="caption" color="text" fontWeight="medium">
-        {title}
-      </MDTypography>
-      <MDTypography variant="caption">{description}</MDTypography>
-    </MDBox>
+      <MDBox lineHeight={1} textAlign="left">
+        <MDTypography display="block" variant="caption" color="text" fontWeight="medium">
+          {title}
+        </MDTypography>
+        <MDTypography variant="caption">{description}</MDTypography>
+      </MDBox>
   );
+
+  const rows = empresas.map((empresas) => ({
+    nome: <Author image={empresas.thumbnail_url != null ? empresas.thumbnail_url : team3} name={empresas.razao_social} sobrenome={empresas.nome_fantasia} email={empresas.email} />,
+      telefone: <Job title={empresas.id} description="" />,
+    status: (
+        <MDBox ml={-1}>
+          <MDBadge  badgeContent="teste" color="success" variant="gradient" size="sm" />
+        </MDBox>
+    ),
+      cnpjcpf: (
+        <MDTypography  component="a" href="#" variant="caption" color="text" fontWeight="medium">
+            {empresas.numero_Documento}
+        </MDTypography>
+    ),
+    acao: (
+        <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
+          Edit
+        </MDTypography>
+    ),
+  }));
 
   return {
     columns: [
       { Header: "Nome", accessor: "nome", width: "45%", align: "left" },
-      { Header: "function", accessor: "function", align: "left" },
+      { Header: "Telefone", accessor: "telefone", align: "left" },
+      { Header: "CNPJ/CPF", accessor: "cnpjcpf", align: "center" },
       { Header: "status", accessor: "status", align: "center" },
-      { Header: "employed", accessor: "employed", align: "center" },
       { Header: "Ação", accessor: "acao", align: "center" },
     ],
-
-    rows: [
-      {
-        nome: <Author image={team2} name="John Michael" email="john@creative-tim.com" />,
-        function: <Job title="Manager" description="Organization" />,
-        status: (
-          <MDBox ml={-1}>
-            <MDBadge badgeContent="online" color="success" variant="gradient" size="sm" />
-          </MDBox>
-        ),
-        employed: (
-          <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-            23/04/18
-          </MDTypography>
-        ),
-        acao: (
-          <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-            Edit
-          </MDTypography>
-        ),
-      },
-      {
-        nome: <Author image={team3} name="Alexa Liras" email="alexa@creative-tim.com" />,
-        function: <Job title="Programator" description="Developer" />,
-        status: (
-          <MDBox ml={-1}>
-            <MDBadge badgeContent="offline" color="dark" variant="gradient" size="sm" />
-          </MDBox>
-        ),
-        employed: (
-          <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-            11/01/19
-          </MDTypography>
-        ),
-        acao: (
-          <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-            Edit
-          </MDTypography>
-        ),
-      },
-      {
-        nome: <Author image={team4} name="Laurent Perrier" email="laurent@creative-tim.com" />,
-        function: <Job title="Executive" description="Projects" />,
-        status: (
-          <MDBox ml={-1}>
-            <MDBadge badgeContent="online" color="success" variant="gradient" size="sm" />
-          </MDBox>
-        ),
-        employed: (
-          <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-            19/09/17
-          </MDTypography>
-        ),
-        acao: (
-          <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-            Edit
-          </MDTypography>
-        ),
-      },
-      {
-        nome: <Author image={team3} name="Michael Levi" email="michael@creative-tim.com" />,
-        function: <Job title="Programator" description="Developer" />,
-        status: (
-          <MDBox ml={-1}>
-            <MDBadge badgeContent="online" color="success" variant="gradient" size="sm" />
-          </MDBox>
-        ),
-        employed: (
-          <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-            24/12/08
-          </MDTypography>
-        ),
-        acao: (
-          <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-            Edit
-          </MDTypography>
-        ),
-      },
-      {
-        nome: <Author image={team3} name="Richard Gran" email="richard@creative-tim.com" />,
-        function: <Job title="Manager" description="Executive" />,
-        status: (
-          <MDBox ml={-1}>
-            <MDBadge badgeContent="offline" color="dark" variant="gradient" size="sm" />
-          </MDBox>
-        ),
-        employed: (
-          <MDTypography component="a" variant="caption" color="text" fontWeight="medium">
-            04/10/21
-          </MDTypography>
-        ),
-        acao: (
-          <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-            Edit
-          </MDTypography>
-        ),
-      },
-    ],
+    rows,
   };
 }

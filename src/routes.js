@@ -94,7 +94,7 @@ const routes = [
   {
     name: "Cadastro de empresa",
     key: "formularios",
-    route: "/formulario",
+    route: "/formulario-empresa",
     component: <EmpresaFormulario />,
   },
   {

@@ -30,7 +30,8 @@ function Alunos() {
                     <Grid item xs={12}>
                         <Card>
                             <CabecalhoTabela
-                                title="Aluno"
+                                title="Alunos"
+                                url="/formulario-aluno"
                             />
                             <MDBox pt={3}>
                                 <DataTable

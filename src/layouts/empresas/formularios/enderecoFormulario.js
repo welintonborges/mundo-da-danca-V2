@@ -6,189 +6,117 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import * as React from "react";
 import {useState} from "react";
+import Stack from "@mui/material/Stack";
+import BotaoTexto from "../../../components/BotaoTexto";
+import MDButton from "../../../components/MDButton";
+import SearchIcon from "@mui/icons-material/Search";
+import CadastroService from "../../../services/cadastro-service";
 
-const EnderecoFormulario = () => {
+const EnderecoFormulario = ({ formDataAtual, setFormDataAtual }) => {
+    console.log("form ==> ",formDataAtual)
+
     const [isDemo, setIsDemo] = useState(false);
-    const [user, setUser] = useState({
-        name: "",
-        email: "",
-        newPassword: "",
-        confirmPassword: "",
-    });
 
-    const changeHandler = (e) => {
-        setUser({
-            ...user,
-            [e.target.name]: e.target.value,
-        });
-    };
     const [errors, setErrors] = useState({
         nameError: false,
         emailError: false,
         newPassError: false,
         confirmPassError: false,
     });
+    const endereco = formDataAtual.endereco;
+    console.log(endereco);
 
+    const getCEP = async (event) =>{
+        event.preventDefault();
+        console.log("getCEP ", formDataAtual.endereco.cep);
+        const resposta = await CadastroService.getCep(formDataAtual.endereco.cep);
+        formDataAtual.endereco = resposta;
+        console.log("formulario ==> ", formDataAtual.endereco);
+    }
     return (
         <section>
             <form>
                 <React.Fragment>
-                    <Typography variant="h6" gutterBottom>
-                    </Typography>
                     <Typography sx={{mt: 2, mb: 2}}>
                         <MDBox display="flex" flexDirection="row" mt={5} mb={3}>
-                            <MDBox
-                                display="flex"
-                                flexDirection="column"
-                                alignItems="flex-start"
-                                width="100%"
-                                mr={2}
+
+                            <Stack width="100%"
+                                   direction={{xs: 'column', sm: 'row'}}
+                                   spacing={{xs: 1, sm: 1, md: 1}}
                             >
-                                <MDTypography variant="body2" color="text" ml={1} fontWeight="regular">
-                                    Endereço
-                                </MDTypography>
-                                <MDBox mb={2} width="100%">
-                                    <MDInput
-                                        type="name"
-                                        fullWidth
-                                        name="name"
-                                        value={user.name}
-                                        onChange={changeHandler}
-                                        error={errors.nameError}
-                                    />
-                                    {errors.nameError && (
-                                        <MDTypography variant="caption" color="error" fontWeight="light">
-                                            The name can not be null
-                                        </MDTypography>
-                                    )}
-                                </MDBox>
-                            </MDBox>
-                            <MDBox
-                                display="flex"
-                                flexDirection="column"
-                                alignItems="flex-start"
-                                width="100%"
-                                ml={2}
-                            >
-                                <MDTypography variant="body2" color="text" ml={1} fontWeight="regular">
-                                    Cidade
-                                </MDTypography>
-                                <MDBox mb={1} width="100%">
-                                    <MDInput
-                                        type="email"
-                                        fullWidth
-                                        name="email"
-                                        value={user.email}
-                                        onChange={changeHandler}
-                                        error={errors.emailError}
-                                        disabled={isDemo}
-                                    />
-                                    {errors.emailError && (
-                                        <MDTypography variant="caption" color="error" fontWeight="light">
-                                            The email must be valid
-                                        </MDTypography>
-                                    )}
-                                </MDBox>
-                                {isDemo && (
-                                    <MDTypography variant="caption" color="text" fontWeight="light">
-                                        In the demo version the email can not be updated
-                                    </MDTypography>
-                                )}
-                            </MDBox>
+
+                                <BotaoTexto
+                                    title="Endereço"
+                                    type="text"
+                                    type="text"valor={formDataAtual.endereco.logradouro}
+                                    aoAlterado={(valor) => setFormDataAtual({...formDataAtual, endereco: {...formDataAtual.endereco, logradouro: valor } })}
+                                    placeholder="Digite seu endereço ..."
+                                />
+                                <BotaoTexto
+                                    title="Complemento"
+                                    type="text"
+                                    type="text"
+                                    valor={formDataAtual.endereco.complemento}
+                                    aoAlterado={(valor) => setFormDataAtual({...formDataAtual, endereco: {...formDataAtual.endereco, complemento: valor } })}
+                                    placeholder="Digite seu numero ..."
+                                />
+                                <BotaoTexto
+                                    title="Cidade"
+                                    type="text"
+                                    type="text"
+
+                                    valor={formDataAtual.endereco.localidade}
+                                    aoAlterado={(valor) => setFormDataAtual({...formDataAtual, endereco: {...formDataAtual.endereco, localidade: valor } })}
+                                    placeholder="Digite seu cidade ..."
+                                />
+
+                            </Stack>
                         </MDBox>
 
                         <MDBox display="flex" flexDirection="column" mb={3}>
                             <MDBox display="flex" flexDirection="row">
-                                <MDBox
-                                    display="flex"
-                                    flexDirection="column"
-                                    alignItems="flex-start"
-                                    width="100%"
-                                    mr={2}
+                                <Stack width="100%"
+                                       direction={{xs: 'column', sm: 'row'}}
+                                       spacing={{xs: 1, sm: 1, md: 1}}
                                 >
-                                    <MDTypography variant="body2" color="text" ml={1} fontWeight="regular">
-                                        Estado
-                                    </MDTypography>
-                                    <MDBox mb={2} width="100%">
-                                        <MDInput
-                                            type="password"
-                                            fullWidth
-                                            name="newPassword"
-                                            placeholder="New Password"
-                                            value={user.newPassword}
-                                            onChange={changeHandler}
-                                            error={errors.newPassError}
-                                            disabled={isDemo}
-                                            inputProps={{
-                                                autoComplete: "new-password",
-                                                form: {
-                                                    autoComplete: "off",
-                                                },
-                                            }}
-                                        />
-                                        {errors.newPassError && (
-                                            <MDTypography variant="caption" color="error" fontWeight="light">
-                                                The password must be of at least 8 characters
-                                            </MDTypography>
-                                        )}
-                                    </MDBox>
-                                </MDBox>
-                                <MDBox
-                                    display="flex"
-                                    flexDirection="column"
-                                    alignItems="flex-start"
-                                    width="100%"
-                                    ml={2}
-                                >
-                                    <MDTypography variant="body2" color="text" ml={1} fontWeight="regular">
-                                        CEP
-                                    </MDTypography>
-                                    <MDBox mb={1} width="100%">
-                                        <MDInput
-                                            type="password"
-                                            fullWidth
-                                            name="confirmPassword"
-                                            placeholder="Confirm Password"
-                                            value={user.confirmPassword}
-                                            onChange={changeHandler}
-                                            error={errors.confirmPassError}
-                                            disabled={isDemo}
-                                            inputProps={{
-                                                autoComplete: "confirmPassword",
-                                                form: {
-                                                    autoComplete: "off",
-                                                },
-                                            }}
-                                        />
-                                        {errors.confirmPassError && (
-                                            <MDTypography variant="caption" color="error" fontWeight="light">
-                                                The password confirmation must match the current password
-                                            </MDTypography>
-                                        )}
-                                    </MDBox>
-                                    {isDemo && (
-                                        <MDTypography variant="caption" color="text" ml={1} fontWeight="light">
-                                            In the demo version the password can not be updated
-                                        </MDTypography>
-                                    )}
-                                </MDBox>
+
+                                    <BotaoTexto
+                                        title="Bairro"
+                                        type="text"
+                                        type="text"valor={formDataAtual.endereco.bairro}
+                                        aoAlterado={(valor) => setFormDataAtual({...formDataAtual, endereco: {...formDataAtual.endereco, bairro: valor } })}
+                                        placeholder="Digite seu Bairro ..."
+                                        width="150px"
+                                    />
+                                    <BotaoTexto
+                                        title="UF"
+                                        type="text"
+                                        type="text"valor={formDataAtual.endereco.uf}
+                                        aoAlterado={(valor) => setFormDataAtual({...formDataAtual, endereco: {...formDataAtual.endereco, uf: valor } })}
+                                        placeholder="Digite seu UF ..."
+                                        width="100px"
+                                    />
+
+                                    <BotaoTexto
+                                        title="CEP"
+                                        type="text"
+                                        valor={formDataAtual.endereco.cep}
+                                        aoAlterado={(valor) => setFormDataAtual({...formDataAtual, endereco: {...formDataAtual.endereco, cep: valor } })}
+                                        placeholder="Digite seu CEP ..."
+                                        width="150px"
+                                    />
+
+                                    <MDButton
+                                        type="button"
+                                        size="lg"
+                                        onClick={getCEP}
+                                    >
+                                        <SearchIcon sx={{ fontSize: 40 }} />
+                                    </MDButton>
+                                </Stack>
                             </MDBox>
-                            {/*<MDBox mt={4} display="flex" justifyContent="end">*/}
-                            {/*  <MDButton variant="gradient" color="info" type="submit">*/}
-                            {/*    Save changes*/}
-                            {/*  </MDButton>*/}
-                            {/*</MDBox>*/}
                         </MDBox>
-
                     </Typography>
-                    {/*<Box sx={{display: 'flex', flexDirection: 'row', pt: 2}}>*/}
-                    {/*    <Box sx={{flex: '1 1 auto'}}/>*/}
-                    {/*    /!* <Button onClick={handleReset}>Reset</Button> *!/*/}
-
-                    {/*    <Button onClick={handleNext}>*/}
-                    {/*        {activeStep === steps.length - 1 ? 'Finish' : 'Proximar'}*/}
-                    {/*    </Button>*/}
-                    {/*</Box>*/}
                 </React.Fragment>
             </form>
         </section>

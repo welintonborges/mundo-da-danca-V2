@@ -28,7 +28,7 @@ const  CabecalhoTabela = (props) =>{
             <Botao
                 color="info"
                 nome_botao="novo"
-                url="/formulario-aluno"
+                url={props.url}
                 endIcon={<SendIcon />}
             />
         </Grid>

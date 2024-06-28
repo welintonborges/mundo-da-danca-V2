@@ -9,6 +9,48 @@ class CadastroService {
     return  API_URL.get(getAlunos)
         .then(response => response.data)
         .catch(error => error);
+  };
+  getEmpresas = () => {
+    const getEmpresas = '/dashboardShowEscola';
+    return  API_URL.get(getEmpresas)
+        .then(response => response.data)
+        .catch(error => error);
+  }
+  getCep = (cep) => {
+     return fetch(`https://viacep.com.br/ws/${cep}/json/`)
+        .then(response => response.json())
+        .then(data => {
+          return data;
+    })
+  }
+  postEmpresa =  (empresa, id_usuario) => {
+    console.log("postEmpresa")
+    const postEmpresa = '/escola';
+    return API_URL.post(postEmpresa, empresa, {
+      headers: {
+        id_usuario: id_usuario
+      }
+    })
+        .then(response =>  response.data.id)
+        .catch(error => error)
+
+    console.log("postEmpresa salvo ==>", response)
+  }
+  postFoto =  (foto) => {
+    const imagem = new FormData();
+    imagem.append('thumbnail', foto.thumbnail);
+    imagem.append('id_pai', foto.id_pai);
+    imagem.append('data_gravacao', foto.data_gravacao,)
+    const postImage = '/imagem';
+    return API_URL.post(postImage, imagem)
+        .then(response => response.data)
+        .catch(error => error)
+  }
+  posEndereco =  (endereco) => {
+    const postImage = '/endereco';
+    return API_URL.post(postImage, endereco)
+        .then(response => response.data)
+        .catch(error => error)
   }
   //
   // login = async (payload) => {
@@ -16,10 +58,7 @@ class CadastroService {
   //   return await HttpService.post(loginEndpoint, payload);
   // };
   //
-  register = async (credentials) => {
-    const registerEndpoint = 'register';
-    return await HttpService.post(registerEndpoint, credentials);
-  };
+
   //
   // logout = async () => {
   //   const logoutEndpoint = 'logout';
