@@ -1,4 +1,4 @@
-import {useMemo, useState} from "react";
+import {useEffect, useMemo, useState} from "react";
 import * as React from "react";
 import camera from '../../assets/images/camera.svg';
 import '../../App.css';
@@ -30,6 +30,11 @@ const BotaoUploadImagem = (props) => {
         props.aoAlterado(evento.target.files[0])
     };
 
+
+    const visualizar = (imagem) =>{
+            setPreview(imagem)
+    }
+
     const handleUploadImage = () => {
         const formData = new FormData();
         formData.append('image', image);
@@ -47,6 +52,12 @@ const BotaoUploadImagem = (props) => {
                 console.error(error);
             });
     };
+
+    useEffect(() => {
+        if(props.valor !== ''){
+            visualizar(props.valor)
+        }
+    }, []);
 
     return (
         <>
@@ -90,9 +101,6 @@ const BotaoUploadImagem = (props) => {
                                        borderRadius: '10px',
                                    }}
                             >
-
-                                aqui
-
                                 <img src={camera} alt="Selecione uma imagem"/>
                                 <ArrowForwardIosIcon/>
                             </Input>

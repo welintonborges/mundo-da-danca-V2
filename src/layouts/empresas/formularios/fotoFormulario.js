@@ -33,9 +33,11 @@ const FotoFormulario = ({ formDataAtual, setFormDataAtual }) => {
                                    direction={{xs: 'column', sm: 'row'}}
                                    spacing={{xs: 1, sm: 1, md: 1}}
                             >
+
                                 <BotaoUploadImagem
                                     valor={formDataAtual.foto.thumbnail}
-                                    aoAlterado={(valor) => setFormDataAtual({...formDataAtual, foto: {...formDataAtual.foto, thumbnail: valor } })}
+                                    aoAlterado={(valor) => setFormDataAtual({...formDataAtual,
+                                        foto: {...formDataAtual.foto, thumbnail: valor } })}
                                 title="Selecione uma imagen"
                                 />
 

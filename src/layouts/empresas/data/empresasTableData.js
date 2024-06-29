@@ -10,19 +10,32 @@ import team4 from "assets/images/team-4.jpg";
 import {useEffect, useState} from "react";
 import CadastroService from "../../../services/cadastro-service";
 import * as React from "react";
+import CheckIcon from "@mui/icons-material/Check";
+import CreateIcon from '@mui/icons-material/Create';
+import DeleteIcon from '@mui/icons-material/Delete';
+import Botao from "../../../components/Botao";
+import MDButton from "../../../components/MDButton";
+import IconButton from "@mui/material/IconButton";
+import { Routes, Route, Navigate, useLocation, useNavigate } from "react-router-dom";
+
+
 
 export default function data() {
   // listargem
+  const navigate = useNavigate();
   const [empresas, setEmpresas] = useState([]);
-
   const getEmpresas = async () => {
-      console.log("getEmpresas")
     const response = await CadastroService.getEmpresas();
-    console.log(response)
     setEmpresas(response);
-
   };
 
+
+
+    function editar(empresa){
+        var empresaSelecionada = JSON.stringify(empresa);
+        localStorage.setItem('empresaSelecionada', empresaSelecionada);
+        navigate('/formulario-empresa', { replace: true });
+    }
 
   useEffect(() => {
       getEmpresas();
@@ -50,9 +63,9 @@ export default function data() {
       </MDBox>
   );
 
-  const rows = empresas.map((empresas) => ({
-    nome: <Author image={empresas.thumbnail_url != null ? empresas.thumbnail_url : team3} name={empresas.razao_social} sobrenome={empresas.nome_fantasia} email={empresas.email} />,
-      telefone: <Job title={empresas.id} description="" />,
+  const rows = empresas.map((empresa) => ({
+    nome: <Author image={empresa.thumbnail_url != null ? empresa.thumbnail_url : team3} name={empresa.razao_social} sobrenome={empresa.nome_fantasia} email={empresa.email} />,
+      telefone: <Job title={empresa.id} description="" />,
     status: (
         <MDBox ml={-1}>
           <MDBadge  badgeContent="teste" color="success" variant="gradient" size="sm" />
@@ -60,13 +73,24 @@ export default function data() {
     ),
       cnpjcpf: (
         <MDTypography  component="a" href="#" variant="caption" color="text" fontWeight="medium">
-            {empresas.numero_Documento}
+            {empresa.numero_Documento}
         </MDTypography>
     ),
     acao: (
         <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-          Edit
+            <IconButton
+                color="info"
+                aria-label="editar"
+                onClick={() => editar(empresa)}
+
+            >
+                <CreateIcon />
+            </IconButton>
+            <IconButton color="primary" aria-label="delete">
+                <DeleteIcon />
+            </IconButton>
         </MDTypography>
+
     ),
   }));
 

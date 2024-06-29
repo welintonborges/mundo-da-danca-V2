@@ -52,6 +52,14 @@ class CadastroService {
         .then(response => response.data)
         .catch(error => error)
   }
+
+  putEmpresa =  (empresa) => {
+    console.log("putEmpresa")
+    const putEmpresa = '/escola';
+    return API_URL.put(putEmpresa, empresa)
+        .then(response =>  response)
+        .catch(error => error)
+  }
   //
   // login = async (payload) => {
   //   const loginEndpoint = 'login';

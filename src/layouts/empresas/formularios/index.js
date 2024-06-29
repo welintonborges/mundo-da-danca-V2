@@ -18,28 +18,37 @@ import Button from "@mui/material/Button";
 import HeaderEmpresa from "./Header";
 import DadosFormulario from "./dadosFormulario";
 import EnderecoFormulario from "./enderecoFormulario";
-import FotoFormulario from "../../alunos/formularios/fotoFormulario";
-import ResumoFormulario from "../../alunos/formularios/resumoFormulario";
+import FotoFormulario from "../../empresas/formularios/fotoFormulario";
+import ResumoFormulario from "../../empresas/formularios/resumoFormulario";
 import Botao from "../../../components/Botao";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import CheckIcon from '@mui/icons-material/Check';
 import CadastroService from "../../../services/cadastro-service";
+import { Routes, Route, Navigate, useLocation, useNavigate } from "react-router-dom";
 
 
 const steps = ['Dados Gerais', 'Dados Contato', 'Logo', 'Resumo'];
 
 const EmpresaFormulario = () => {
-    const [isDemo, setIsDemo] = useState(false);
     const [notification, setNotification] = useState(false);
+    const navigate = useNavigate();
     const [mensagem, setMensagem] = useState('');
+    const [id_pai, setId_pai] = useState('');
     const [completed, setCompleted] = React.useState({});
     const [activeStep, setActiveStep] = React.useState(0);
     const [data_gravacao, setdata_gravacao] = useState(new Date());
     const isStepOptional = (step) => {
         return step <= 2;
     };
+
+    const empresaSelecionada = JSON.parse(localStorage.getItem('empresaSelecionada'));
+    console.log("empresaSelecionada -->", empresaSelecionada);
+
+
     const [formDataAtual, setFormDataAtual] = useState({
         dados: {
+            id:'',
             razao_social: '',
             nome_fantasia: '',
             numero_documento: '',
@@ -53,15 +62,39 @@ const EmpresaFormulario = () => {
             bairro: '',
             cep: '',
             uf: '',
-            id_pai:'',
-            data_gravacao:''
+            id_pai: '',
+            data_gravacao: ''
         },
         foto: {
             thumbnail: '',
-            id_pai:'',
-            data_gravacao:''
+            id_pai: '',
+            data_gravacao: ''
         },
     });
+    const preparaEdicao = (empresaSelecionada) => {
+            console.log("repasse ==> ", empresaSelecionada)
+            //repassando os dados para edição
+            setId_pai(empresaSelecionada.id_pai);
+            formDataAtual.dados.id = empresaSelecionada.id_pai;
+            formDataAtual.dados.razao_social = empresaSelecionada.razao_social;
+            formDataAtual.dados.nome_fantasia = empresaSelecionada.nome_fantasia;
+            formDataAtual.dados.numero_documento = empresaSelecionada.numero_Documento;
+            formDataAtual.dados.telefone = empresaSelecionada.telefone;
+            formDataAtual.dados.email = empresaSelecionada.email;
+            //repassando o contato
+            formDataAtual.endereco.logradouro = empresaSelecionada.logradouro;
+            formDataAtual.endereco.localidade = empresaSelecionada.localidade;
+            formDataAtual.endereco.complemento = empresaSelecionada.complemento;
+            formDataAtual.endereco.bairro = empresaSelecionada.bairro;
+            formDataAtual.endereco.cep = empresaSelecionada.cep;
+            formDataAtual.endereco.uf = empresaSelecionada.uf;
+            formDataAtual.endereco.id_pai = empresaSelecionada.id_pai;
+            //repassando foto
+            formDataAtual.foto.id_pai = empresaSelecionada.id_pai;
+            formDataAtual.foto.thumbnail = empresaSelecionada.thumbnail_url;
+            console.log("dados idição ==> ", formDataAtual)
+          localStorage.removeItem('empresaSelecionada');
+    }
 
     function getStepContent(step) {
         switch (step) {
@@ -79,23 +112,33 @@ const EmpresaFormulario = () => {
     }
 
     const handleNext = () => {
-        if(activeStep === 3){
-            let id_usuario = "bde45a49"
-            const resposta =  CadastroService.postEmpresa(formDataAtual.dados, id_usuario);
-            resposta.then(id => {
-                console.log("postEmpresa salvo ==>", id);
-                if(id){
-                    formDataAtual.foto.id_pai = id;
-                    formDataAtual.endereco.id_pai = id;
-                    formDataAtual.foto.data_gravacao = data_gravacao;
-                    formDataAtual.endereco.data_gravacao = data_gravacao;
-                    console.log("foto ==>: ", formDataAtual.foto )
-                    CadastroService.postFoto(formDataAtual.foto);
-                    CadastroService.posEndereco(formDataAtual.endereco)
-                    setNotification(true)
-                    setMensagem("Empressa salva com sucesso!!")
-                }
-            });
+        if (activeStep === 3) {
+            if(id_pai === ''){
+                console.log("Salvar ")
+                let id_usuario = "bde45a49"
+                const resposta = CadastroService.postEmpresa(formDataAtual.dados, id_usuario);
+                resposta.then(id => {
+                    console.log("postEmpresa salvo ==>", id);
+                    if (id) {
+                        formDataAtual.foto.id_pai = id;
+                        formDataAtual.endereco.id_pai = id;
+                        formDataAtual.foto.data_gravacao = data_gravacao;
+                        formDataAtual.endereco.data_gravacao = data_gravacao;
+                        console.log("foto ==>: ", formDataAtual.foto)
+                        CadastroService.postFoto(formDataAtual.foto);
+                        CadastroService.posEndereco(formDataAtual.endereco)
+                        setNotification(true)
+                        setMensagem("Empressa salva com sucesso!!")
+                    }
+                });
+            }else{
+                console.log("Altera ")
+                const resposta = CadastroService.putEmpresa(formDataAtual.dados);
+                console.log("alterar => ", resposta)
+                setNotification(true)
+                setMensagem("Empressa Alterada com sucesso!!")
+            }
+
 
         }
         setActiveStep(activeStep + 1);
@@ -110,13 +153,20 @@ const EmpresaFormulario = () => {
     };
 
     const getUserData = async () => {
-         AuthService.getProfile();
+        AuthService.getProfile();
     };
 
+    const redirecionar = () => {
+      console.log("redirecionar");
+        navigate('/empresa', { replace: true });
+    };
     useEffect(() => {
         getUserData();
-    }, []);
+        if(empresaSelecionada != null){
+            preparaEdicao(empresaSelecionada)
+        }
 
+    }, []);
 
 
     return (
@@ -168,6 +218,16 @@ const EmpresaFormulario = () => {
                                             <Typography variant="subtitle1">
                                                 mensagem
                                             </Typography>
+
+                                            <Box sx={{display: 'flex', flexDirection: 'row', pt: 2}}>
+                                                <Box sx={{flex: '1 1 auto'}}/>
+                                                <Botao
+                                                    color="info"
+                                                    onClick={redirecionar}
+                                                    nome_botao={'Concluir'}
+                                                    endIcon={<CheckIcon/>}
+                                                />
+                                            </Box>
                                         </React.Fragment>
                                     ) : (
                                         <React.Fragment>
