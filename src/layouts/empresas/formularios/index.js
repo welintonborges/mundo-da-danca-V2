@@ -14,27 +14,25 @@ import Footer from "../../../examples/Footer";
 import AuthService from "../../../services/auth-service";
 import Box from "@mui/material/Box";
 import {Step, StepButton, StepLabel, Stepper, Typography} from "@mui/material";
-import Button from "@mui/material/Button";
 import HeaderEmpresa from "./Header";
 import DadosFormulario from "./dadosFormulario";
 import EnderecoFormulario from "./enderecoFormulario";
 import FotoFormulario from "../../empresas/formularios/fotoFormulario";
-import ResumoFormulario from "../../empresas/formularios/resumoFormulario";
 import Botao from "../../../components/Botao";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import CheckIcon from '@mui/icons-material/Check';
 import CadastroService from "../../../services/cadastro-service";
-import { Routes, Route, Navigate, useLocation, useNavigate } from "react-router-dom";
+import {Routes, Route, Navigate, useLocation, useNavigate} from "react-router-dom";
 
 
-const steps = ['Dados Gerais', 'Dados Contato', 'Logo', 'Resumo'];
+const steps = ['Dados Gerais', 'Dados Contato', 'Logo'];
 
 const EmpresaFormulario = () => {
     const [notification, setNotification] = useState(false);
     const navigate = useNavigate();
     const [mensagem, setMensagem] = useState('');
-    const [id_pai, setId_pai] = useState('');
+    const [status, setStatus] = useState('');
     const [completed, setCompleted] = React.useState({});
     const [activeStep, setActiveStep] = React.useState(0);
     const [data_gravacao, setdata_gravacao] = useState(new Date());
@@ -48,7 +46,7 @@ const EmpresaFormulario = () => {
 
     const [formDataAtual, setFormDataAtual] = useState({
         dados: {
-            id:'',
+            id: '',
             razao_social: '',
             nome_fantasia: '',
             numero_documento: '',
@@ -57,13 +55,13 @@ const EmpresaFormulario = () => {
         },
         endereco: {
             logradouro: '',
-            complemento: '',
-            localidade: '',
+            numero: '',
+            cidade: '',
             bairro: '',
             cep: '',
             uf: '',
             id_pai: '',
-            data_gravacao: ''
+            data_gravacao: '',
         },
         foto: {
             thumbnail: '',
@@ -72,28 +70,26 @@ const EmpresaFormulario = () => {
         },
     });
     const preparaEdicao = (empresaSelecionada) => {
-            console.log("repasse ==> ", empresaSelecionada)
-            //repassando os dados para edição
-            setId_pai(empresaSelecionada.id_pai);
-            formDataAtual.dados.id = empresaSelecionada.id_pai;
-            formDataAtual.dados.razao_social = empresaSelecionada.razao_social;
-            formDataAtual.dados.nome_fantasia = empresaSelecionada.nome_fantasia;
-            formDataAtual.dados.numero_documento = empresaSelecionada.numero_Documento;
-            formDataAtual.dados.telefone = empresaSelecionada.telefone;
-            formDataAtual.dados.email = empresaSelecionada.email;
-            //repassando o contato
-            formDataAtual.endereco.logradouro = empresaSelecionada.logradouro;
-            formDataAtual.endereco.localidade = empresaSelecionada.localidade;
-            formDataAtual.endereco.complemento = empresaSelecionada.complemento;
-            formDataAtual.endereco.bairro = empresaSelecionada.bairro;
-            formDataAtual.endereco.cep = empresaSelecionada.cep;
-            formDataAtual.endereco.uf = empresaSelecionada.uf;
-            formDataAtual.endereco.id_pai = empresaSelecionada.id_pai;
-            //repassando foto
-            formDataAtual.foto.id_pai = empresaSelecionada.id_pai;
-            formDataAtual.foto.thumbnail = empresaSelecionada.thumbnail_url;
-            console.log("dados idição ==> ", formDataAtual)
-          localStorage.removeItem('empresaSelecionada');
+        //repassando os dados para edição);
+        formDataAtual.dados.id = empresaSelecionada.id_escola;
+        formDataAtual.dados.razao_social = empresaSelecionada.razao_social;
+        formDataAtual.dados.nome_fantasia = empresaSelecionada.nome_fantasia;
+        formDataAtual.dados.numero_documento = empresaSelecionada.numero_Documento;
+        formDataAtual.dados.telefone = empresaSelecionada.telefone;
+        formDataAtual.dados.email = empresaSelecionada.email;
+        //repassando o contato
+        formDataAtual.endereco.logradouro = empresaSelecionada.logradouro;
+        formDataAtual.endereco.cidade = empresaSelecionada.cidade;
+        formDataAtual.endereco.numero = empresaSelecionada.numero;
+        formDataAtual.endereco.bairro = empresaSelecionada.bairro;
+        formDataAtual.endereco.cep = empresaSelecionada.cep;
+        formDataAtual.endereco.uf = empresaSelecionada.uf;
+        formDataAtual.endereco.id = empresaSelecionada.id_endereco;
+        //repassando foto
+        formDataAtual.foto.id_pai = empresaSelecionada.id_pai;
+        formDataAtual.foto.thumbnail = empresaSelecionada.thumbnail_url;
+        formDataAtual.foto.id = empresaSelecionada.id_imagem;
+        localStorage.removeItem('empresaSelecionada');
     }
 
     function getStepContent(step) {
@@ -104,17 +100,14 @@ const EmpresaFormulario = () => {
                 return <EnderecoFormulario formDataAtual={formDataAtual} setFormDataAtual={setFormDataAtual}/>;
             case 2:
                 return <FotoFormulario formDataAtual={formDataAtual} setFormDataAtual={setFormDataAtual}/>;
-            case 3:
-                return <ResumoFormulario formDataAtual={formDataAtual} setFormDataAtual={setFormDataAtual}/>;
             default:
                 throw new Error('Unknown steps');
         }
     }
 
     const handleNext = () => {
-        if (activeStep === 3) {
-            if(id_pai === ''){
-                console.log("Salvar ")
+        if (activeStep === 2) {
+            if (formDataAtual.dados.id === '') {
                 let id_usuario = "bde45a49"
                 const resposta = CadastroService.postEmpresa(formDataAtual.dados, id_usuario);
                 resposta.then(id => {
@@ -124,22 +117,38 @@ const EmpresaFormulario = () => {
                         formDataAtual.endereco.id_pai = id;
                         formDataAtual.foto.data_gravacao = data_gravacao;
                         formDataAtual.endereco.data_gravacao = data_gravacao;
-                        console.log("foto ==>: ", formDataAtual.foto)
                         CadastroService.postFoto(formDataAtual.foto);
-                        CadastroService.posEndereco(formDataAtual.endereco)
+                        CadastroService.posEndereco(formDataAtual.endereco);
+                        setStatus("info")
                         setNotification(true)
                         setMensagem("Empressa salva com sucesso!!")
+
                     }
                 });
-            }else{
-                console.log("Altera ")
-                const resposta = CadastroService.putEmpresa(formDataAtual.dados);
-                console.log("alterar => ", resposta)
+            } else {
+                if (formDataAtual.dados.id !== null) {
+                    const respostaEmpresa = CadastroService.putEmpresa(formDataAtual.dados);
+                    console.log("respostaEmpresa => ", respostaEmpresa)
+                } else {
+                    setStatus("error")
+                    setNotification(true)
+                    setMensagem("Erro ao alterar o dados da empresa !!")
+                    return;
+                }
+                console.log("ormDataAtual.endereco.id ==> ", formDataAtual.endereco.id);
+                if (formDataAtual.endereco.id != null) {
+                    const respostaEndereco = CadastroService.putEndereco(formDataAtual.endereco);
+                    console.log("respostaEmpresa => ", respostaEndereco)
+                } else {
+                    setStatus("error")
+                    setNotification(true)
+                    setMensagem("Erro ao alterar o endereço da empresa !!")
+                    return;
+                }
                 setNotification(true)
+                setStatus("info")
                 setMensagem("Empressa Alterada com sucesso!!")
             }
-
-
         }
         setActiveStep(activeStep + 1);
     };
@@ -157,12 +166,12 @@ const EmpresaFormulario = () => {
     };
 
     const redirecionar = () => {
-      console.log("redirecionar");
-        navigate('/empresa', { replace: true });
+        console.log("redirecionar");
+        navigate('/empresa', {replace: true});
     };
     useEffect(() => {
         getUserData();
-        if(empresaSelecionada != null){
+        if (empresaSelecionada != null) {
             preparaEdicao(empresaSelecionada)
         }
 
@@ -176,7 +185,7 @@ const EmpresaFormulario = () => {
             {/*<MDBox mb={2} />*/}
             <HeaderEmpresa>
                 {notification && (
-                    <MDAlert color="info" mt="20px">
+                    <MDAlert color={status} dismissible mt="20px">
                         <MDTypography variant="body2" color="white">
                             {mensagem}
                         </MDTypography>
@@ -199,7 +208,7 @@ const EmpresaFormulario = () => {
                             <Box sx={{width: '100%'}}>
                                 <Typography component="h1" variant="h4" align="center">
                                     Cadastro de Empresa
-                                </Typography>{activeStep} - {notification}
+                                </Typography>
                                 <Stepper activeStep={activeStep}>
                                     {steps.map((label, index) => (
                                         <Step key={label} completed={completed[index]}>
@@ -213,10 +222,11 @@ const EmpresaFormulario = () => {
                                     {activeStep === steps.length ? (
                                         <React.Fragment>
                                             <Typography variant="h5" gutterBottom>
-                                                Obrigado
+                                                Obrigado, {formDataAtual.dados.razao_social}.
                                             </Typography>
                                             <Typography variant="subtitle1">
-                                                mensagem
+                                                Seus dados foram salvo com sucesso ,se tiver alguma duvida entra em
+                                                contato com o suporte.
                                             </Typography>
 
                                             <Box sx={{display: 'flex', flexDirection: 'row', pt: 2}}>
@@ -248,7 +258,8 @@ const EmpresaFormulario = () => {
                                                         color="info"
                                                         onClick={handleNext}
                                                         nome_botao={activeStep === steps.length - 1 ? 'Enviar' : 'Proxima'}
-                                                        endIcon={<ArrowForwardIosIcon/>}
+                                                        endIcon={activeStep === steps.length - 1 ? <CheckIcon/> :
+                                                            <ArrowForwardIosIcon/>}
                                                     />
                                                 </Box>
 

@@ -13,7 +13,7 @@ class CadastroService {
   getEmpresas = () => {
     const getEmpresas = '/dashboardShowEscola';
     return  API_URL.get(getEmpresas)
-        .then(response => response.data)
+        .then(response =>  response.data)
         .catch(error => error);
   }
   getCep = (cep) => {
@@ -24,7 +24,6 @@ class CadastroService {
     })
   }
   postEmpresa =  (empresa, id_usuario) => {
-    console.log("postEmpresa")
     const postEmpresa = '/escola';
     return API_URL.post(postEmpresa, empresa, {
       headers: {
@@ -33,8 +32,6 @@ class CadastroService {
     })
         .then(response =>  response.data.id)
         .catch(error => error)
-
-    console.log("postEmpresa salvo ==>", response)
   }
   postFoto =  (foto) => {
     const imagem = new FormData();
@@ -54,9 +51,16 @@ class CadastroService {
   }
 
   putEmpresa =  (empresa) => {
-    console.log("putEmpresa")
+    console.log("putEmpresa ==> ", empresa)
     const putEmpresa = '/escola';
     return API_URL.put(putEmpresa, empresa)
+        .then(response =>  response.data)
+        .catch(error => error)
+  }
+  putEndereco =  (endereco) => {
+    console.log("putEndereco ==> ", endereco)
+    const putEndereco = '/endereco';
+    return API_URL.put(putEndereco, endereco)
         .then(response =>  response)
         .catch(error => error)
   }

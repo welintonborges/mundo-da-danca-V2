@@ -30,7 +30,7 @@ const BotaoTexto = (props) => {
                     error={props.error}
                     placeholder={props.placeholder}
                     required={props.obrigatorio}
-
+                    // success
                 />
                 {props.nameError && (
                     <MDTypography variant="caption" color="error" fontWeight="light">

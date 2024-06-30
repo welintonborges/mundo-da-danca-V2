@@ -11,9 +11,9 @@ import BotaoTexto from "../../../components/BotaoTexto";
 import MDButton from "../../../components/MDButton";
 import SearchIcon from '@mui/icons-material/Search';
 
-const EnderecoFormulario = ({ formDataAtual, setFormDataAtual }) => {
+const EnderecoFormulario = ({formDataAtual, setFormDataAtual}) => {
 
-    console.log("form ==> ",formDataAtual)
+    console.log("form ==> ", formDataAtual)
 
     const [isDemo, setIsDemo] = useState(false);
 
@@ -27,7 +27,7 @@ const EnderecoFormulario = ({ formDataAtual, setFormDataAtual }) => {
     console.log(endereco);
     return (
         <section>
-            <form  >
+            <form>
                 <React.Fragment>
                     <Typography sx={{mt: 2, mb: 2}}>
                         <MDBox display="flex" flexDirection="row" mt={5} mb={3}>
@@ -40,15 +40,21 @@ const EnderecoFormulario = ({ formDataAtual, setFormDataAtual }) => {
                                 <BotaoTexto
                                     title="Endereço"
                                     type="text"
-                                    type="text"valor={formDataAtual.endereco.endereco}
-                                    aoAlterado={(valor) => setFormDataAtual({...formDataAtual, endereco: {...formDataAtual.endereco, endereco: valor } })}
+                                    type="text" valor={formDataAtual.endereco.endereco}
+                                    aoAlterado={(valor) => setFormDataAtual({
+                                        ...formDataAtual,
+                                        endereco: {...formDataAtual.endereco, endereco: valor}
+                                    })}
                                     placeholder="Digite seu endereço ..."
                                 />
                                 <BotaoTexto
                                     title="Complemento"
                                     type="text"
-                                    type="text"valor={formDataAtual.endereco.complemento}
-                                    aoAlterado={(valor) => setFormDataAtual({...formDataAtual, endereco: {...formDataAtual.endereco, complemento: valor } })}
+                                    type="text" valor={formDataAtual.endereco.numero}
+                                    aoAlterado={(valor) => setFormDataAtual({
+                                        ...formDataAtual,
+                                        endereco: {...formDataAtual.endereco, numero: valor}
+                                    })}
                                     placeholder="Digite seu numero ..."
                                 />
                                 <BotaoTexto
@@ -56,7 +62,10 @@ const EnderecoFormulario = ({ formDataAtual, setFormDataAtual }) => {
                                     type="text"
                                     type="text"
                                     valor={formDataAtual.endereco.cidade}
-                                    aoAlterado={(valor) => setFormDataAtual({...formDataAtual, endereco: {...formDataAtual.endereco, cidade: valor } })}
+                                    aoAlterado={(valor) => setFormDataAtual({
+                                        ...formDataAtual,
+                                        endereco: {...formDataAtual.endereco, cidade: valor}
+                                    })}
                                     placeholder="Digite seu cidade ..."
                                 />
 
@@ -73,24 +82,33 @@ const EnderecoFormulario = ({ formDataAtual, setFormDataAtual }) => {
                                     <BotaoTexto
                                         title="Bairro"
                                         type="text"
-                                        type="text"valor={formDataAtual.endereco.bairro}
-                                        aoAlterado={(valor) => setFormDataAtual({...formDataAtual, endereco: {...formDataAtual.endereco, bairro: valor } })}
+                                        type="text" valor={formDataAtual.endereco.bairro}
+                                        aoAlterado={(valor) => setFormDataAtual({
+                                            ...formDataAtual,
+                                            endereco: {...formDataAtual.endereco, bairro: valor}
+                                        })}
                                         placeholder="Digite seu Bairro ..."
                                         width="150px"
                                     />
                                     <BotaoTexto
                                         title="UF"
                                         type="text"
-                                        type="text"valor={formDataAtual.endereco.uf}
-                                        aoAlterado={(valor) => setFormDataAtual({...formDataAtual, endereco: {...formDataAtual.endereco, uf: valor } })}
+                                        type="text" valor={formDataAtual.endereco.uf}
+                                        aoAlterado={(valor) => setFormDataAtual({
+                                            ...formDataAtual,
+                                            endereco: {...formDataAtual.endereco, uf: valor}
+                                        })}
                                         placeholder="Digite seu UF ..."
                                         width="100px"
                                     />
 
                                     <BotaoTexto
                                         title="CEP"
-                                        type="text"valor={formDataAtual.endereco.cep}
-                                        aoAlterado={(valor) => setFormDataAtual({...formDataAtual, endereco: {...formDataAtual.endereco, cep: valor } })}
+                                        type="text" valor={formDataAtual.endereco.cep}
+                                        aoAlterado={(valor) => setFormDataAtual({
+                                            ...formDataAtual,
+                                            endereco: {...formDataAtual.endereco, cep: valor}
+                                        })}
                                         placeholder="Digite seu CEP ..."
                                         width="150px"
                                     />
@@ -99,7 +117,7 @@ const EnderecoFormulario = ({ formDataAtual, setFormDataAtual }) => {
                                         type="button"
                                         size="lg"
                                     >
-                                        <SearchIcon sx={{ fontSize: 40 }} />
+                                        <SearchIcon sx={{fontSize: 40}}/>
                                     </MDButton>
                                 </Stack>
                             </MDBox>

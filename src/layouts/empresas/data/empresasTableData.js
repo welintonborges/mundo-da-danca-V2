@@ -27,6 +27,7 @@ export default function data() {
   const getEmpresas = async () => {
     const response = await CadastroService.getEmpresas();
     setEmpresas(response);
+    console.log(response);
   };
 
 
@@ -63,7 +64,7 @@ export default function data() {
       </MDBox>
   );
 
-  const rows = empresas.map((empresa) => ({
+  const rows = empresas?.map((empresa) => ({
     nome: <Author image={empresa.thumbnail_url != null ? empresa.thumbnail_url : team3} name={empresa.razao_social} sobrenome={empresa.nome_fantasia} email={empresa.email} />,
       telefone: <Job title={empresa.id} description="" />,
     status: (

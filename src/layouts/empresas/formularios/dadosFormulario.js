@@ -1,16 +1,12 @@
 import {Typography} from "@mui/material";
 import MDBox from "../../../components/MDBox";
-import MDTypography from "../../../components/MDTypography";
-import MDInput from "../../../components/MDInput";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
 import * as React from "react";
 import {useState} from "react";
 import BotaoTexto from "../../../components/BotaoTexto";
 import BotaoTelefone from "../../../components/BotaoTelefone";
 import Stack from "@mui/material/Stack";
 
-const DadosFormulario = ({ formDataAtual, setFormDataAtual }) => {
+const DadosFormulario = ({formDataAtual, setFormDataAtual}) => {
     const [isDemo, setIsDemo] = useState(false);
 
     const [errors, setErrors] = useState({
@@ -39,14 +35,20 @@ const DadosFormulario = ({ formDataAtual, setFormDataAtual }) => {
                                     title="Nome"
                                     type="text"
                                     valor={formDataAtual.dados.razao_social}
-                                    aoAlterado={(valor) => setFormDataAtual({...formDataAtual, dados: {...formDataAtual.dados, razao_social: valor } })}
+                                    aoAlterado={(valor) => setFormDataAtual({
+                                        ...formDataAtual,
+                                        dados: {...formDataAtual.dados, razao_social: valor}
+                                    })}
                                     placeholder="Digite seu nome ..."
                                 />
                                 <BotaoTexto
                                     title="Nome fantasia"
                                     type="tex"
                                     valor={formDataAtual.dados.nome_fantasia}
-                                    aoAlterado={(valor) => setFormDataAtual({...formDataAtual, dados: {...formDataAtual.dados, nome_fantasia: valor } })}
+                                    aoAlterado={(valor) => setFormDataAtual({
+                                        ...formDataAtual,
+                                        dados: {...formDataAtual.dados, nome_fantasia: valor}
+                                    })}
                                     placeholder="Digite o Nome fantasia ..."
                                 />
                             </Stack>
@@ -58,14 +60,20 @@ const DadosFormulario = ({ formDataAtual, setFormDataAtual }) => {
                                     title="Telefone"
                                     type="tel"
                                     valor={formDataAtual.dados.telefone}
-                                    aoAlterado={(valor) => setFormDataAtual({...formDataAtual, dados: {...formDataAtual.dados, telefone: valor } })}
+                                    aoAlterado={(valor) => setFormDataAtual({
+                                        ...formDataAtual,
+                                        dados: {...formDataAtual.dados, telefone: valor}
+                                    })}
                                     placeholder="Digite seu telefone ..."
                                 />
                                 <BotaoTexto
                                     title="E-mail"
                                     type="email"
                                     valor={formDataAtual.dados.email}
-                                    aoAlterado={(valor) => setFormDataAtual({...formDataAtual, dados: {...formDataAtual.dados, email: valor } })}
+                                    aoAlterado={(valor) => setFormDataAtual({
+                                        ...formDataAtual,
+                                        dados: {...formDataAtual.dados, email: valor}
+                                    })}
                                     placeholder="Digite seu e-mail ..."
                                 />
 
@@ -73,7 +81,10 @@ const DadosFormulario = ({ formDataAtual, setFormDataAtual }) => {
                                     title="CNPJ/CPF"
                                     type="text"
                                     valor={formDataAtual.dados.numero_documento}
-                                    aoAlterado={(valor) => setFormDataAtual({...formDataAtual, dados: {...formDataAtual.dados, numero_documento: valor } })}
+                                    aoAlterado={(valor) => setFormDataAtual({
+                                        ...formDataAtual,
+                                        dados: {...formDataAtual.dados, numero_documento: valor}
+                                    })}
                                     placeholder="Digite sua Razão social ..."
                                 />
                             </MDBox>
