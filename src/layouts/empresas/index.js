@@ -23,14 +23,30 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import GoogleIcon from "@mui/icons-material/Google";
 import CabecalhoTabela from "../../components/CabecalhoTabela";
+import * as React from "react";
+import MDAlert from "../../components/MDAlert";
+import {useState} from "react";
 
-function Empresas() {
-    const {columns, rows} = empresasTableData();
-    // const {columns: pColumns, rows: pRows} = projectsTableData();
+function Empresas(props) {
+    const {columns, rows, validar} = empresasTableData();
+    const [notification, setNotification] = useState(false);
+    const exluido = JSON.parse(localStorage.getItem('exluido'));
+
+    if(exluido != null){
+        setNotification(true);
+        localStorage.clear();
+    }
 
     return (
         <DashboardLayout>
             <DashboardNavbar/>
+            {notification && (
+                <MDAlert color="info" dismissible mt="20px">
+                    <MDTypography variant="body2" color="white">
+                        Empresa excluida com sucesso!!
+                    </MDTypography>
+                </MDAlert>
+            )}
             <MDBox pt={6} pb={3}>
                 <Grid container spacing={6}>
                     <Grid item xs={12}>
@@ -40,12 +56,12 @@ function Empresas() {
                                 url="/formulario-empresa"
                             />
                             <MDBox pt={3}>
-                                <DataTable
-                                    table={{columns, rows}}
-                                    isSorted={false}
-                                    entriesPerPage={false}
-                                    showTotalEntries={false}
-                                    noEndBorder
+                                <DataTable validar={validar}
+                                           table={{columns, rows}}
+                                           isSorted={false}
+                                           entriesPerPage={false}
+                                           showTotalEntries={false}
+                                           noEndBorder
                                 />
                             </MDBox>
                         </Card>

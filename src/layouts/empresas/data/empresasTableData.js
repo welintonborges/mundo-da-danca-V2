@@ -18,32 +18,44 @@ import MDButton from "../../../components/MDButton";
 import IconButton from "@mui/material/IconButton";
 import { Routes, Route, Navigate, useLocation, useNavigate } from "react-router-dom";
 
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import {Dialog} from "@mui/material";
+import cadastroService from "../../../services/cadastro-service";
+import MDAlert from "../../../components/MDAlert";
 
 
-export default function data() {
-  // listargem
+
+export default function data(props) {
   const navigate = useNavigate();
   const [empresas, setEmpresas] = useState([]);
+  const [open, setOpen] = React.useState(false);
+
   const getEmpresas = async () => {
     const response = await CadastroService.getEmpresas();
     setEmpresas(response);
-    console.log(response);
   };
 
-
-
-    function editar(empresa){
+    const editar = (empresa) => {
         var empresaSelecionada = JSON.stringify(empresa);
         localStorage.setItem('empresaSelecionada', empresaSelecionada);
         navigate('/formulario-empresa', { replace: true });
+    }
+
+    const deletar = (id_empresa) => {
+        cadastroService.deleteEmpresa(id_empresa);
+        var excluir = JSON.stringify("excluido");
+        localStorage.setItem('exluido', excluir);
+        getEmpresas();
     }
 
   useEffect(() => {
       getEmpresas();
   },[]);
 
-  const Author = ({ image, name, sobrenome, email }) => (
-
+  const Author = ({ image, name, sobrenome, email}) => (
       <MDBox display="flex" alignItems="center" lineHeight={1}>
         <MDAvatar src={image} name={name} size="sm" />
         <MDBox ml={2} lineHeight={1}>
@@ -65,7 +77,10 @@ export default function data() {
   );
 
   const rows = empresas?.map((empresa) => ({
-    nome: <Author image={empresa.thumbnail_url != null ? empresa.thumbnail_url : team3} name={empresa.razao_social} sobrenome={empresa.nome_fantasia} email={empresa.email} />,
+    nome: <Author image={empresa.thumbnail_url != null ? empresa.thumbnail_url : team3}
+                  name={empresa.razao_social}
+                  sobrenome={empresa.nome_fantasia}
+                  email={empresa.email} />,
       telefone: <Job title={empresa.id} description="" />,
     status: (
         <MDBox ml={-1}>
@@ -87,14 +102,17 @@ export default function data() {
             >
                 <CreateIcon />
             </IconButton>
-            <IconButton color="primary" aria-label="delete">
+            <IconButton
+                color="primary"
+                aria-label="delete"
+                onClick={() => deletar(empresa.id_escola)}
+            >
                 <DeleteIcon />
             </IconButton>
         </MDTypography>
 
     ),
   }));
-
   return {
     columns: [
       { Header: "Nome", accessor: "nome", width: "45%", align: "left" },

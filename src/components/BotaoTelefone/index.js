@@ -8,6 +8,9 @@ import {useState} from "react";
 
 const BotaoTelefone = (props) => {
     const [formattedPhone, setFormattedPhone] = useState('');
+    const [statusError, setStatusError] = useState(false);
+    const [statusSucess, setStatusSucess] = useState(false);
+    const [nomeError, setNomeError] = useState(false);
 
     const phoneMask = (value) => {
         if (!value) return ""
@@ -30,7 +33,17 @@ const BotaoTelefone = (props) => {
         }
         props.aoAlterado(evento.target.value)
     };
-
+    const handleBlur = (evento) => {
+        if(evento.target.value.length === 0){
+            setStatusSucess(false)
+            setStatusError(true)
+            setNomeError(true)
+        }else{
+            setNomeError(false)
+            setStatusError(false)
+            setStatusSucess(true)
+        }
+    };
 
     return (
         <MDBox
@@ -49,15 +62,17 @@ const BotaoTelefone = (props) => {
                     fullWidth
                     mask={mask}
                     formatChars={formatChars}
+                    onBlur={props.required == true ? handleBlur : ''}
+                    error={statusError}
+                    success={statusSucess}
                     onChange={handleInputChange}
                     name={props.name}
                     value={formattedPhone}
-                    error={props.error}
                     placeholder={props.placeholder}
                 />
-                {props.nameError && (
+                {nomeError  && (
                     <MDTypography variant="caption" color="error" fontWeight="light">
-                        The name can not be null
+                        o campo {props.title} e obrigatorio
                     </MDTypography>
                 )}
             </MDBox>

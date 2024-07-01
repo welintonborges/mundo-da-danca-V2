@@ -20,8 +20,6 @@ const DadosFormulario = ({ formDataAtual, setFormDataAtual }) => {
         confirmPassError: false,
     });
 
-    const dados = formDataAtual.dados;
-    console.log(dados);
     return (
         <section>
             <form formDataAtual={formDataAtual}>

@@ -40,6 +40,7 @@ const EmpresaFormulario = () => {
         return step <= 2;
     };
 
+
     const empresaSelecionada = JSON.parse(localStorage.getItem('empresaSelecionada'));
     console.log("empresaSelecionada -->", empresaSelecionada);
 

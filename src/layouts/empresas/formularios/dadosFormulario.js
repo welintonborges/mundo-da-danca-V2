@@ -19,6 +19,7 @@ const DadosFormulario = ({formDataAtual, setFormDataAtual}) => {
     const dados = formDataAtual.dados;
     console.log(dados);
 
+
     return (
         <section>
             <form>
@@ -34,6 +35,7 @@ const DadosFormulario = ({formDataAtual, setFormDataAtual}) => {
                                 <BotaoTexto
                                     title="Nome"
                                     type="text"
+                                    required={true}
                                     valor={formDataAtual.dados.razao_social}
                                     aoAlterado={(valor) => setFormDataAtual({
                                         ...formDataAtual,
@@ -44,6 +46,7 @@ const DadosFormulario = ({formDataAtual, setFormDataAtual}) => {
                                 <BotaoTexto
                                     title="Nome fantasia"
                                     type="tex"
+                                    required={true}
                                     valor={formDataAtual.dados.nome_fantasia}
                                     aoAlterado={(valor) => setFormDataAtual({
                                         ...formDataAtual,
@@ -59,6 +62,7 @@ const DadosFormulario = ({formDataAtual, setFormDataAtual}) => {
                                 <BotaoTelefone
                                     title="Telefone"
                                     type="tel"
+                                    required={true}
                                     valor={formDataAtual.dados.telefone}
                                     aoAlterado={(valor) => setFormDataAtual({
                                         ...formDataAtual,
@@ -69,6 +73,7 @@ const DadosFormulario = ({formDataAtual, setFormDataAtual}) => {
                                 <BotaoTexto
                                     title="E-mail"
                                     type="email"
+                                    required={true}
                                     valor={formDataAtual.dados.email}
                                     aoAlterado={(valor) => setFormDataAtual({
                                         ...formDataAtual,
@@ -80,6 +85,7 @@ const DadosFormulario = ({formDataAtual, setFormDataAtual}) => {
                                 <BotaoTexto
                                     title="CNPJ/CPF"
                                     type="text"
+                                    required={true}
                                     valor={formDataAtual.dados.numero_documento}
                                     aoAlterado={(valor) => setFormDataAtual({
                                         ...formDataAtual,

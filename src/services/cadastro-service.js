@@ -33,6 +33,24 @@ class CadastroService {
         .then(response =>  response.data.id)
         .catch(error => error)
   }
+  putEmpresa =  (empresa) => {
+    console.log("putEmpresa ==> ", empresa)
+    const putEmpresa = '/escola';
+    return API_URL.put(putEmpresa, empresa)
+        .then(response =>  response.data)
+        .catch(error => error)
+  }
+  deleteEmpresa =  (id_empresa) => {
+    console.log("putEmpresa ==> ", id_empresa)
+    const deleteEmpresa = '/escola';
+    return API_URL.delete(deleteEmpresa, {
+      headers: {
+        id: id_empresa
+      }
+    })
+        .then(response =>  response.data.id)
+        .catch(error => error)
+  }
   postFoto =  (foto) => {
     const imagem = new FormData();
     imagem.append('thumbnail', foto.thumbnail);
@@ -49,14 +67,6 @@ class CadastroService {
         .then(response => response.data)
         .catch(error => error)
   }
-
-  putEmpresa =  (empresa) => {
-    console.log("putEmpresa ==> ", empresa)
-    const putEmpresa = '/escola';
-    return API_URL.put(putEmpresa, empresa)
-        .then(response =>  response.data)
-        .catch(error => error)
-  }
   putEndereco =  (endereco) => {
     console.log("putEndereco ==> ", endereco)
     const putEndereco = '/endereco';
@@ -64,35 +74,6 @@ class CadastroService {
         .then(response =>  response)
         .catch(error => error)
   }
-  //
-  // login = async (payload) => {
-  //   const loginEndpoint = 'login';
-  //   return await HttpService.post(loginEndpoint, payload);
-  // };
-  //
-
-  //
-  // logout = async () => {
-  //   const logoutEndpoint = 'logout';
-  //   return await HttpService.post(logoutEndpoint);
-  // };
-  //
-  // forgotPassword = async (payload) => {
-  //   const forgotPassword = 'password-forgot';
-  //   return await HttpService.post(forgotPassword, payload);
-  // }
-  //
-  // resetPassword = async (credentials) => {
-  //   const resetPassword = 'password-reset';
-  //   return await HttpService.post(resetPassword, credentials);
-  // }
-  //
-  //
-  //
-  // updateProfile = async (newInfo) => {
-  //   const updateProfile = "me";
-  //   return await HttpService.patch(updateProfile, newInfo);
-  // }
 }
 
 export default new CadastroService();

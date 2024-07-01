@@ -2,13 +2,55 @@ import MDBox from "../MDBox";
 import MDTypography from "../MDTypography";
 import MDInput from "../MDInput";
 import * as React from "react";
+import {useState} from "react";
 
 
 const BotaoTexto = (props) => {
+    const [statusError, setStatusError] = useState(false);
+    const [statusSucess, setStatusSucess] = useState(false);
+    const [nomeError, setNomeError] = useState(false);
+    const [mensagem, setMensagem] = useState('');
+    const mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
     const aoDigitado = (evento) => {
-       props.aoAlterado(evento.target.value)
+        props.aoAlterado(evento.target.value)
     }
-    return(
+    const handleBlur = (evento) => {
+        if (props.title === "E-mail") {
+            validarEmail(evento.target.value)
+        }
+        if (props.title !== "E-mail") {
+            validarCampo(evento.target.value)
+        }
+    };
+
+    const validarCampo =(campo) => {
+        if (campo.length === 0) {
+            setStatusSucess(false)
+            setStatusError(true)
+            setNomeError(true)
+            setMensagem( `o campo ${props.title} e obrigatorio`)
+        } else {
+            setNomeError(false)
+            setStatusError(false)
+            setStatusSucess(true)
+        }
+    }
+
+    const validarEmail = (email) => {
+        let validado = email.trim().match(mailFormat)
+        if ( validado == null) {
+            console.log("passamdo")
+            setStatusError(true)
+            setNomeError(true)
+            setMensagem(`o campo ${props.title} e invalido!`)
+        }else{
+            setNomeError(false)
+            setStatusError(false)
+            setStatusSucess(true)
+        }
+    }
+    return (
 
         <MDBox
             display="flex"
@@ -26,15 +68,17 @@ const BotaoTexto = (props) => {
                     fullWidth
                     name={props.name}
                     value={props.valor}
+                    onBlur={props.required == true ? handleBlur : ''}
                     onChange={aoDigitado}
-                    error={props.error}
+                    error={statusError}
+                    success={statusSucess}
                     placeholder={props.placeholder}
-                    required={props.obrigatorio}
+
                     // success
                 />
-                {props.nameError && (
+                {nomeError && (
                     <MDTypography variant="caption" color="error" fontWeight="light">
-                        The name can not be null
+                        {mensagem}
                     </MDTypography>
                 )}
             </MDBox>
