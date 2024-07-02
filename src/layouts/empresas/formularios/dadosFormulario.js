@@ -5,9 +5,10 @@ import {useState} from "react";
 import BotaoTexto from "../../../components/BotaoTexto";
 import BotaoTelefone from "../../../components/BotaoTelefone";
 import Stack from "@mui/material/Stack";
+import BotaoEmail from "../../../components/BotaoEmail";
+import BotaoCPFCNPJ from "../../../components/BotaoCPFCNPJ";
 
 const DadosFormulario = ({formDataAtual, setFormDataAtual}) => {
-    const [isDemo, setIsDemo] = useState(false);
 
     const [errors, setErrors] = useState({
         nameError: false,
@@ -15,9 +16,6 @@ const DadosFormulario = ({formDataAtual, setFormDataAtual}) => {
         newPassError: false,
         confirmPassError: false,
     });
-
-    const dados = formDataAtual.dados;
-    console.log(dados);
 
 
     return (
@@ -70,7 +68,7 @@ const DadosFormulario = ({formDataAtual, setFormDataAtual}) => {
                                     })}
                                     placeholder="Digite seu telefone ..."
                                 />
-                                <BotaoTexto
+                                <BotaoEmail
                                     title="E-mail"
                                     type="email"
                                     required={true}
@@ -82,7 +80,7 @@ const DadosFormulario = ({formDataAtual, setFormDataAtual}) => {
                                     placeholder="Digite seu e-mail ..."
                                 />
 
-                                <BotaoTexto
+                                <BotaoCPFCNPJ
                                     title="CNPJ/CPF"
                                     type="text"
                                     required={true}

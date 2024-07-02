@@ -5,33 +5,35 @@ import * as React from "react";
 import {useState} from "react";
 
 
-const BotaoTexto = (props) => {
+const BotaoEmail = (props) => {
     const [statusError, setStatusError] = useState(false);
     const [statusSucess, setStatusSucess] = useState(false);
     const [nomeError, setNomeError] = useState(false);
     const [mensagem, setMensagem] = useState('');
+    const mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
     const aoDigitado = (evento) => {
         props.aoAlterado(evento.target.value)
     }
     const handleBlur = (evento) => {
-            validarCampo(evento.target.value)
-
+            validarEmail(evento.target.value)
     };
 
-    const validarCampo =(campo) => {
-        if (campo.length === 0) {
-            setStatusSucess(false)
+    const validarEmail = (email) => {
+        let validado = email.trim().match(mailFormat)
+        if (validado == null) {
+            console.log("passamdo")
             setStatusError(true)
             setNomeError(true)
-            setMensagem( `o campo ${props.title} e obrigatorio`)
-        } else {
+            setMensagem(`o campo ${props.title} e invalido!`)
+        }else{
+            console.log("validou")
             setNomeError(false)
             setStatusError(false)
             setStatusSucess(true)
         }
     }
-
+    console.log("suce ==> ", statusSucess)
     return (
 
         <MDBox
@@ -43,6 +45,7 @@ const BotaoTexto = (props) => {
         >
             <MDTypography variant="body2" color="text" ml={1} fontWeight="regular">
                 {props.title}
+
             </MDTypography>
             <MDBox mb={2} width="100%">
                 <MDInput
@@ -68,4 +71,4 @@ const BotaoTexto = (props) => {
     )
 }
 
-export default BotaoTexto;
+export default BotaoEmail;
