@@ -61,6 +61,17 @@ class CadastroService {
         .then(response => response.data)
         .catch(error => error)
   }
+  deleteFoto =  (id_imagem) => {
+    console.log("deleteFoto ==> ", id_imagem)
+    const deleteEndereco = '/imagem';
+    return API_URL.delete(deleteEndereco, {
+      headers: {
+        id: id_imagem
+      }
+    })
+        .then(response =>  response.data.id)
+        .catch(error => error)
+  }
   posEndereco =  (endereco) => {
     const postImage = '/endereco';
     return API_URL.post(postImage, endereco)
@@ -72,6 +83,17 @@ class CadastroService {
     const putEndereco = '/endereco';
     return API_URL.put(putEndereco, endereco)
         .then(response =>  response)
+        .catch(error => error)
+  }
+  deleteEndereco =  (id_endereco) => {
+    console.log("deleteEndereco ==> ", id_endereco)
+    const deleteEndereco = '/endereco';
+    return API_URL.delete(deleteEndereco, {
+      headers: {
+        id: id_endereco
+      }
+    })
+        .then(response =>  response.data.id)
         .catch(error => error)
   }
 }

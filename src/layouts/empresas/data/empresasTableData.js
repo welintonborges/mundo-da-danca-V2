@@ -44,11 +44,15 @@ export default function data(props) {
         navigate('/formulario-empresa', { replace: true });
     }
 
-    const deletar = (id_empresa) => {
-        cadastroService.deleteEmpresa(id_empresa);
+    const deletar = (empresa) => {
+        console.log("empresa ==> ", empresa)
+        cadastroService.deleteEmpresa(empresa.id_escola);
+        cadastroService.deleteEndereco(empresa.id_endereco)
+        cadastroService.deleteFoto(empresa.id_imagem)
+        getEmpresas();
         var excluir = JSON.stringify("excluido");
         localStorage.setItem('exluido', excluir);
-        getEmpresas();
+
     }
 
   useEffect(() => {
@@ -105,7 +109,7 @@ export default function data(props) {
             <IconButton
                 color="primary"
                 aria-label="delete"
-                onClick={() => deletar(empresa.id_escola)}
+                onClick={() => deletar(empresa)}
             >
                 <DeleteIcon />
             </IconButton>
